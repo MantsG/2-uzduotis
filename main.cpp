@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <sort>
 
 using std::cout;
 using std::cin;
@@ -13,14 +14,27 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::setprecision;
+using std::sort;
 
 struct Studentas{
     string var;
     string pav;
     vector <int> nd;
     int egz;
-    double gal;
+    double galVid;
+    double galMed;
     };
+
+double median(vector<int> &v){
+    if(v.empty()) return 0.0;
+    vector<int> laik=v;
+    sort(laik.begin(), laik.end());
+    int n = laik.size()
+    if(n % 2 ==1)
+        return laik[n/2];
+    else
+        return (laik[n/2-1] + laik[n/2]) / 2.0;
+    }
 
 Studentas Stud_iv();
 
@@ -74,3 +88,4 @@ int main(){
 
         return Pirmas;
     }
+
