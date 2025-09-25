@@ -7,3 +7,4 @@ v.01 commit af84c7e - Pridėtas atsitiktinis balų generavimas bei failo nuskait
 v.01 commit 14ece73 - Pilnai sutvarkytas "būdo įvedimo" įvedimas.
 v.01 commit 659688c - ištrintas cin>>ivBudas.
 v.01 commit 575315c - Jeigu failo nepavyksta rasti/atidaryti/nuskaityti programa yra uždaroma, patobulinti įvedimai.
+v.01 commit 282acf3 - Sutvarkyta dar daugiau įvedimu ir output'as
