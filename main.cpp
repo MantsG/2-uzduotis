@@ -128,13 +128,28 @@ int main(){
         Grupe.push_back(Stud_iv(atsitiktinis));
         }
     }
-    cout<<"Pasirinkite galutinio balo skaiciavimo buda: "<<endl;
-    cout<<"1 - Vidurkis"<<endl;
-    cout<<"2 - Mediana"<<endl;
-    cout<<"3 - abu"<<endl;
     int pasirinkimas;
-    cin>>pasirinkimas;
+    string pasirinkimasStr;
 
+    while(true){
+        cout<<"Pasirinkite galutinio balo skaiciavimo buda: "<<endl;
+        cout<<"1 - Vidurkis"<<endl;
+        cout<<"2 - Mediana"<<endl;
+        cout<<"3 - Abu"<<endl;
+
+        cin>>pasirinkimas Str;
+
+        if(!pasirinkimasStr.empty() && all_of(pasirinkimasStr.begin(), pasirinkimasStr.end(), ::isdigit)){
+            pasirinkimas = stoi(pasirinkimasStr);
+            if(pasirinkimas >= 1 && pasirinkimasStr <= 3) break;
+        }
+        cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
+    }
+
+    sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
+        return a.var < b.var;
+    });
+    
     cout<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
 
     if(pasirinkimas == 1) cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
@@ -206,6 +221,7 @@ int main(){
     }
             return Pirmas;
     }
+
 
 
 
