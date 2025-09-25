@@ -90,26 +90,39 @@ int main(){
     cout<<"3 - Nuskaityti is failo"<<endl;
 
     int ivBudas;
+    string ivBudasStr;
 
     while(true){
-        if(cin>>ivBudas && ivBudas >= 1 && ivBudas <= 3){
-            break;
+       cin>>ivBudasStr;
+        if(!ivBudasStr.empty() && all_of(ivBudasStr.begin(), ivBudasStr.end(), ::isdigit)){
+            ivBudas = stoi(ivBudasStr);
+            if(ivBudas >= 1 && ivBudas <= 3) break;
         }
-        else{
-            cout<<"Neteisinga ivestis, iveskite skaiciu 1,2 arba 3"<<endl;
-            cin.clear();
-            cin.ignore
-            cin.ignore(10000, '\n');
-        }
+        cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
     }
 
     if(ivBudas == 3){
-        Grupe = SkaitytiFaila("studentai10000.txt");
-    }
+        Grupe = SkaitytiFaila("studentai110000.txt");
+        if(Grupe.empty()){
+            cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<endl;
+            return 0;
+        }
+     }        
     else{
-        cout<<"Kiek studentu grupeje? ";
         int m;
-        cin>>m;
+        string mStr;
+        while(true){
+            cout<<"Kiek studentu grupeje? "<<endl;
+            cin>>mStr;
+
+            if(!mStr.empty() && all_of(mStr.begin(), mStr.end(), ::isdigit)){
+                m = stoi(mStr);
+                if(m >=1){
+                    break;
+                }
+            }
+            cout<<"Neteisinga ivestis, turi buti skaicius lygus arba didesnis uz 1"<<endl;
+        }
         bool atsitiktinis = (ivBudas == 2);
         for(auto z=0; z<m; z++){
         Grupe.push_back(Stud_iv(atsitiktinis));
@@ -156,24 +169,30 @@ int main(){
         cout<<"Sugeneruoti "<<nd_kiekis<<" namu darbu pazymiai ir egzaminas"<<endl;
     }
         else{
+            string ndStr;
             cout<<"Iveskite studento("<<Pirmas.var<<" "<<Pirmas.pav<<") namu darbu pazymius (Paspauskite enter 2 kartus, kad baigti): "<<endl;
             while (true){
                 cout<<Pirmas.nd.size()+1<<": ";
-                cin>>laik_nd;
-                if(laik_nd == 0) break;
-                if(laik_nd < 1 || laik_nd > 10){
-                    cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
-                    continue;
+                cin>>ndStr;
+                    
+                    if(!ndStr.empty() && all_of(ndStr.begin(), ndStr.end(), ::isdigit)){
+                        laik_nd = stoi(ndStr);
+                        if(laik_nd >= 1 && laik_nd <= 10){
+                            Pirmas.nd.push_back(laik_nd);
+                            sum += laik_nd;
+                            continue;
+                        }
                 }
-                Pirmas.nd.push_back(laik_nd);
-                sum+=laik_nd;
+                cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
             }
-            cout<<"Studento egzamino pazimys: ";
-            while(!(cin>>Pirmas.egz) || Pirmas.egz < 1 || Pirmas.egz > 10){
-            cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout<<"Studento egzamino pazimys: ";
+            string egzStr;
+
+            while(true){
+                cout<<"Studento egzamino pazimys: ";
+                cinz>>egzStr;
+                if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
+                    Pirmas.egz = stoi(egzStr);
+                    if(Pimras.egz >= 1 && Pirmas.egz <= 10) break;
             }
         }
 
@@ -187,6 +206,7 @@ int main(){
     }
             return Pirmas;
     }
+
 
 
 
