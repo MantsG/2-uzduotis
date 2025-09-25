@@ -90,7 +90,6 @@ int main(){
     cout<<"3 - Nuskaityti is failo"<<endl;
 
     int ivBudas;
-    cin>>ivBudas;
 
     while(true){
         if(cin>>ivBudas && ivBudas >= 1 && ivBudas <= 3){
@@ -188,6 +187,7 @@ int main(){
     }
             return Pirmas;
     }
+
 
 
 
