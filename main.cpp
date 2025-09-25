@@ -92,8 +92,20 @@ int main(){
     int ivBudas;
     cin>>ivBudas;
 
+    while(true){
+        if(cin>>ivBudas && ivBudas >= 1 && ivBudas <= 3){
+            break;
+        }
+        else{
+            cout<<"Neteisinga ivestis, iveskite skaiciu 1,2 arba 3"<<endl;
+            cin.clear();
+            cin.ignore
+            cin.ignore(10000, '\n');
+        }
+    }
+
     if(ivBudas == 3){
-        Grupe = SkaitytiFaila("kursiokai.txt");
+        Grupe = SkaitytiFaila("studentai10000.txt");
     }
     else{
         cout<<"Kiek studentu grupeje? ";
@@ -111,7 +123,7 @@ int main(){
     int pasirinkimas;
     cin>>pasirinkimas;
 
-    cout<<setw(10)<<left<<"Vardas"<<setw(15)<<left<<"Pavarde";
+    cout<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
 
     if(pasirinkimas == 1) cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
     else if(pasirinkimas == 2) cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
@@ -120,7 +132,7 @@ int main(){
     cout<<"-----------------------------------------------------------"<<endl;
     
     for(auto Past:Grupe){
-        cout<<setw(10)<<left<<Past.var<<setw(15)<<left<<Past.pav;
+        cout<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
         if(pasirinkimas == 1) cout<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galVid<<endl;
         else if(pasirinkimas == 2) cout<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
         else cout<<setw(18)<<left<<fixed<<setprecision(2)<<Past.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
@@ -176,6 +188,7 @@ int main(){
     }
             return Pirmas;
     }
+
 
 
 
