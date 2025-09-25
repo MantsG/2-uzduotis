@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <cctype>
 
 using std::cout;
 using std::cin;
@@ -19,6 +20,8 @@ using std::fixed;
 using std::setprecision;
 using std::sort;
 using std::ifstream;
+using std::ofstream;
+using std::all_of;
 
 struct Studentas{
     string var;
@@ -28,6 +31,27 @@ struct Studentas{
     double galVid;
     double galMed;
     };
+
+bool naturalCompare(const string& a, const string& b){
+    size_t i=0, j=0;
+    while(i < a.size() && j < b.size()){
+        if(std::isdigit(a[i]) && std:isdigit(b[j])){
+            size_t i2 = i;
+            while(i2 < a.size() && std::isdigit(a[i2])) i2++;
+            int numA = std::stoi(a.substr(i, i2 - i));
+            size_t j2 = j;
+            while(j2 < b.size() && std::isdigit(b[j2])) j2++;
+            int numB = std::stoi(b.substr(j, j2 - j));
+            if(numA != numB) return numA <numB;
+            i = i2;
+            j = j2;
+        } else{
+            if(a[i] != b[j]) return a[i] < b[j];
+            i++; j++;
+        }
+    }   
+     return a.size() < b.size();       
+}
 
 double median(vector<int> &v){
     if(v.empty()) return 0.0;
@@ -102,15 +126,17 @@ int main(){
     }
 
     if(ivBudas == 3){
-        Grupe = SkaitytiFaila("studentai110000.txt");
+        Grupe = SkaitytiFaila("studentai10000.txt");
+        
         if(Grupe.empty()){
             cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<endl;
             return 0;
         }
-     }        
+    }        
     else{
         int m;
         string mStr;
+        
         while(true){
             cout<<"Kiek studentu grupeje? "<<endl;
             cin>>mStr;
@@ -123,11 +149,13 @@ int main(){
             }
             cout<<"Neteisinga ivestis, turi buti skaicius lygus arba didesnis uz 1"<<endl;
         }
+        
         bool atsitiktinis = (ivBudas == 2);
         for(auto z=0; z<m; z++){
-        Grupe.push_back(Stud_iv(atsitiktinis));
+            Grupe.push_back(Stud_iv(atsitiktinis));
         }
     }
+    
     int pasirinkimas;
     string pasirinkimasStr;
 
@@ -146,85 +174,141 @@ int main(){
         cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
     }
 
-    sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
-        return a.var < b.var;
-    });
-    
-    cout<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
-
-    if(pasirinkimas == 1) cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-    else if(pasirinkimas == 2) cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-    else cout<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-
-    cout<<"-----------------------------------------------------------"<<endl;
-    
-    for(auto Past:Grupe){
-        cout<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
-        if(pasirinkimas == 1) cout<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galVid<<endl;
-        else if(pasirinkimas == 2) cout<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
-        else cout<<setw(18)<<left<<fixed<<setprecision(2)<<Past.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
+    int rusiavimas;
+    string rusiavimasStr;
+    while(true){
+        cout<<"Pasirinkite rusiavimo buda: "<<endl;
+        cout<<"1 - pagal varda"<<endl;
+        cout<<"2 - pagal pavarde"<<endl;
+        cin>>rusiavimasStr;
+        if(!rusiavimasStr.empty() && all_of(rusiavimasStr.begin(), rusiavimasStr.end(), ::isdigit)){
+            rusiavimas = stoi(rusiavimasStr);
+            if(rusiavimas == 1 || rusiavimas == 2) break;
         }
+        cout<<"Neteisingas ivestis, iveskite skaiciu 1 arba 2"<<endl;
     }
+    
+    if(rusiavimas == 1){
+        sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
+            return naturalCompare(a.var, b.var);
+        }};
+    }else{ 
+        sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
+        return naturalCompare (a.pav, b.pav);
+    });
+}
+    
+    ofstream out("rezultatai.txt");
+    
+    out<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
+
+    if(pasirinkimas == 1) out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+    else if(pasirinkimas == 2) out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    else out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+
+    out<<"--------------------------------------------------------------------"<<endl;
+    for(auto Past:Grupe){
+        out<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
+        
+        if(pasirinkimas == 1) out<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galVid<<endl;
+        else if(pasirinkimas == 2) out<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
+        else out<<setw(18)<<left<<fixed<<setprecision(2)<<Past.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
+        }
+
+    out<<"---------------------------------------------------------------------"<<endl;
+    cout<<"Rezultatai issaugoti faile rezultatai.txt"<<endl;
+}
 
     Studentas Stud_iv(bool atsitiktinis){
         int laik_nd, sum=0;
-
         Studentas Pirmas;
+
         cout<<"Ivesk studento duomenis"<<endl;
-        cout<<"Vardas: "; cin>>Pirmas.var;
-        cout<<"Pavarde: "; cin>>Pirmas.pav;
-            if (atsitiktinis){
-                int nd_kiekis = rand()%10 + 1;
-                for(int i=0; i<nd_kiekis; i++){
-                    laik_nd = rand()%10 + 1;
-                    Pirmas.nd.push_back(laik_nd);
-                    sum+=laik_nd;
+        string vardas;
+        while(true){
+            cout<<"Vardas: ";
+            cin>> vardas;
+            bool tikRaides = all_of(vardas.begin(), vardas.end(),
+                [](unsigned char c){ return std::isalpha(c); });
+            if (!vardas.empty() && tikRaides){
+                Pirmas.var = vardas;
+                break;
+            }
+            cout<<"Neteisinga ivestis, varde gali buti tik raides (A-Z)"<<endl;
         }
-        Pirmas.egz = rand()%10 + 1;
-        cout<<"Sugeneruoti "<<nd_kiekis<<" namu darbu pazymiai ir egzaminas"<<endl;
+        string pavarde;
+        while (true){
+            cout<<"Pavarde: ";
+            cin>> pavarde;
+            bool tikRaides = all_of(pavarde.begin(), pavarde.end(),
+                [](unsigned char c){ return std::isalpha(c); });
+            if (!pavarde.empty() && tikRaides){
+                Pirmas.pav = pavarde;
+                break;
+        }
+        cout <<"Neteisinga ivestis, pavardeje gali buti tik raides (A-Z)"<<endl;
     }
-        else{
-            string ndStr;
-            cout<<"Iveskite studento("<<Pirmas.var<<" "<<Pirmas.pav<<") namu darbu pazymius (Paspauskite enter 2 kartus, kad baigti): "<<endl;
-            while (true){
-                cout<<Pirmas.nd.size()+1<<": ";
-                cin>>ndStr;
+
+    if (atsitiktinis){
+        int nd_kiekis = rand()%10 + 1;
+        for(int i=0; i<nd_kiekis; i++){
+            laik_nd = rand()%10 + 1;
+            Pirmas.nd.push_back(laik_nd);
+            sum+=laik_nd;
+    }
+    Pirmas.egz = rand()%10 + 1;
+    cout<<"Sugeneruoti "<<nd_kiekis<<" namu darbu pazymiai ir egzaminas"<<endl;
+}
+    else{
+        string ndStr;
+        cin.ignore();
+        
+        cout<<"Iveskite studento("<<Pirmas.var<<" "<<Pirmas.pav<<") namu darbu pazymius (Paspauskite enter 2 kartus, kad baigti): "<<endl;
+        
+        int enter= 0;
+        
+        while (true){
+            cout<<Pirmas.nd.size()+1<<": ";
+            std::getline(cin, ndStr);
                     
-                    if(!ndStr.empty() && all_of(ndStr.begin(), ndStr.end(), ::isdigit)){
-                        laik_nd = stoi(ndStr);
-                        if(laik_nd >= 1 && laik_nd <= 10){
-                            Pirmas.nd.push_back(laik_nd);
-                            sum += laik_nd;
-                            continue;
-                        }
+            if(ndStr.empty()){
+                enter++;
+                if(enter == 2) break;
+                continue;
+            }
+            enter = 0;
+            
+            if(all_of(ndStr.begin(), ndStr.end(), ::isdigit)){
+                laik_nd = stoi(ndStr);
+                if(laik_nd >= 1 && laik_nd <= 10){
+                    Pirmas.nd.push_back(laik_nd);
+                    sum += laik_nd;
+                    continue;
                 }
-                cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
+                if(laik_nd == 0) break;
             }
-            string egzStr;
-
-            while(true){
-                cout<<"Studento egzamino pazimys: ";
-                cinz>>egzStr;
-                if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
-                    Pirmas.egz = stoi(egzStr);
-                    if(Pimras.egz >= 1 && Pirmas.egz <= 10) break;
-            }
+            cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
         }
+        string egzStr;
 
-        if(!Pirmas.nd.empty()){
-            double vid = double(sum)/double(Pirmas.nd.size());
-            Pirmas.galVid=vid*0.4+0.6*Pirmas.egz;
-            Pirmas.galMed=median(Pirmas.nd)*0.4+0.6*Pirmas.egz;
-        }   else{
-            Pirmas.galVid=0.6*Pirmas.egz;
-            Pirmas.galMed=0.6*Pirmas.egz;
+        while(true){
+            cout<<"Studento egzamino pazimys: ";
+            cin>>egzStr;
+            if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
+                Pirmas.egz = stoi(egzStr);
+                if(Pimras.egz >= 1 && Pirmas.egz <= 10) break;
+            }
+            cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
+        }
     }
-            return Pirmas;
+
+    if(!Pirmas.nd.empty()){
+        double vid = double(sum)/double(Pirmas.nd.size());
+        Pirmas.galVid=vid*0.4+0.6*Pirmas.egz;
+        Pirmas.galMed=median(Pirmas.nd)*0.4+0.6*Pirmas.egz;
+    } else{
+        Pirmas.galVid=0.6*Pirmas.egz;
+        Pirmas.galMed=0.6*Pirmas.egz;
     }
-
-
-
-
-
-
-
+    return Pirmas;
+}
