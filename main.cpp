@@ -7,6 +7,7 @@
 #include <ctime>
 #include <fstream>
 #include <cctype>
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -43,7 +44,7 @@ bool naturalCompare(const string& a, const string& b){
             int numA = 0;
             for(size_t k=i; k<i2; ++k) numA = numA*10 + (a[k]-'0');
             int numB = 0;
-            for(size_t k=j; k<i2; ++k) numA = numA*10 + (b[k]-'0');
+            for(size_t k=j; k<j2; ++k) numB = numB*10 + (b[k]-'0');
             
             if(numA != numB) return numA <numB;
             i = i2;
@@ -242,43 +243,53 @@ int main(){
     });
 }
     
-    ofstream out("rezultatai.txt");
-    
-    cout<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
-    out<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
+    vector<Studentas> vargsiukai;
+    vector<Studentas> kietiakai;
 
-    if(pasirinkimas == 1){
-        cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-        out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-    } else if(pasirinkimas == 2){
-        cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-        out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-    } else{
-        cout<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-        out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    for(const auto &s: Grupe){
+        double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+        if(galutinis < 5.0) vargsiukai.push_back(s);
+        else kietiakai.push_back(s);
     }
 
-    cout<<"--------------------------------------------------------------------"<<endl;
-    out<<"--------------------------------------------------------------------"<<endl;
-    for(const auto &Past:Grupe){
-        cout<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
-        out<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
-        
-    if(pasirinkimas == 1){
-        cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-        out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-    } else if(pasirinkimas == 2){
-        cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-        out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    if(rusiavimas == 1){
+        sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
+            return naturalCompare(a.var, b.var);
+        });
+        sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
+            return naturalCompare(a.var, b.var);
+        });
     } else{
-        cout<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-        out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
+             return naturalCompare(a.pav, b.pav);
+        });
+        sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
+             return naturalCompare(a.pav, b.pav);
+        });
     }
-}
 
-    cout<<"---------------------------------------------------------------------"<<endl;
-    out<<"---------------------------------------------------------------------"<<endl;
-    cout<<"Rezultatai issaugoti faile rezultatai.txt"<<endl;
+    ofstream outV("vargsiukai.txt");
+    ofstream outK("kietiakai.txt");
+
+    auto spausdinti = [&](ofstream &out, const vector<Studentas>& grupe){
+        out<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
+        if(pasirinkimas == 1) out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+        else if(pasirinkimas == 2) out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        else out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        out<<"---------------------------------------------------------------------"<<endl;
+
+        for(const auto &s: grupe){
+            out<<setw(15)<<left<<s.var<<setw(20)<<left<<s.pav;
+            if(pasirinkimas == 1) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galVid<<endl;
+            else if(pasirinkimas == 2) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed<<endl;
+            else out<<setw(18)<<left<<fixed<<setprecision(2)<<s.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed<<endl;
+    }
+};
+
+spausdinti(outV, vargsiukai);
+spausdinti(outK, kietiakai);
+
+
 }
 
     Studentas Stud_iv(bool atsitiktinis){
@@ -352,3 +363,4 @@ int main(){
     }
     return Pirmas;
 }
+
