@@ -21,7 +21,6 @@ using std::setprecision;
 using std::sort;
 using std::ifstream;
 using std::ofstream;
-using std::all_of;
 
 struct Studentas{
     string var;
@@ -35,13 +34,17 @@ struct Studentas{
 bool naturalCompare(const string& a, const string& b){
     size_t i=0, j=0;
     while(i < a.size() && j < b.size()){
-        if(std::isdigit(a[i]) && std:isdigit(b[j])){
+        if(std::isdigit(static_cast<unsigned char>(a[i])) && std:isdigit(static_cast<unsigned char>(b[j]))){
             size_t i2 = i;
-            while(i2 < a.size() && std::isdigit(a[i2])) i2++;
-            int numA = std::stoi(a.substr(i, i2 - i));
+            while(i2 < a.size() && std::isdigit(static_cast<unsigned char>(a[i2]))) ++i2;
             size_t j2 = j;
-            while(j2 < b.size() && std::isdigit(b[j2])) j2++;
-            int numB = std::stoi(b.substr(j, j2 - j));
+            while(j2 < b.size() && std::isdigit(static_cast<unsigned char>(b[j2]))) ++j2;
+
+            int numA = 0;
+            for(size_t k=i; k<i2; ++k) numA = numA*10 + (a[k]-'0');
+            int numB = 0;
+            for(size_t k=j; k<i2; ++k) numA = numA*10 + (b[k]-'0');
+            
             if(numA != numB) return numA <numB;
             i = i2;
             j = j2;
@@ -67,20 +70,23 @@ double median(vector<int> &v){
 Studentas Stud_iv(bool atsitiktinis);
 
 void GeneruotiFaila(const string& failoVardas, int kiek){
-    ofstream out(failoVardas, std::ios::out);
+    ofstream out(failoVardas);
+    if(!out){
+        cout<<"Nepavyko sukurti failo"<<failoVardas<<"\n";
+        return;
+    }
 
     out<<"Vardas Pavarde";
-    out<<" ND1 ND2 ND3 ND4 ND5 ND6 ND7 ND8 ND9 ND10 Egz\n";
+    for(int i=1; i<=10; i++) out<<" ND"<<i;
+    out<<" Egz"<<endl;
 
     for(int i=1; i<=kiek; i++){
         out<<"Vardas"<<i<<" Pavarde"<<i;
-        int nd_kiekis = rand() % 10 + 1;
-        for(int j=0; j<<nd_kiekis; j++){
-            out<<' '<<(rand() % 10 + 1);
+        for(int j=0; j<10; j++){
+            out<<" "<<(rand() % 10 + 1);
         }
-    out<<' '<<(rand() % 10 + 1)<< '\n';
+        out<<" "<<(rand() % 10 + 1)<<endl;
     }
-    out.close();
     cout<<"Sugeneruotas failas: "<<failoVardas<<" ("<<kiek<<" irasai)\n";
 }
 
@@ -103,9 +109,13 @@ vector<Studentas> SkaitytiFaila(const string &failoVardas){
 
         int paz;
         vector<int> laik;
-        while(in.peek() != '\n' && in >> paz){
+        string restOfLine;
+        getline(in, restOfLine);
+        std::istringstream iss(restOfLine);
+        while(iss>>paz){
             laik.push_back(paz);
         }
+        
         if(!laik.empty()){
             s.egz = laik.back();
             laik.pop_back();
@@ -122,9 +132,25 @@ vector<Studentas> SkaitytiFaila(const string &failoVardas){
     return grupe;
 }
 
+
 int main(){
+    
     srand(time(0));
+    
+    cout<<"Ar generuoti 5 studentu failus (1k, 10k, 100k, 1m, 10m)? 1 - taip, 2 - ne: ";
+    string genStr;
+    cin>>genStr;
+    if(!genStr.empty() && all_of(genStr.begin(), genStr.end(), ::isdigit) && stoi(genStr) == 1){
+        cout<<"Pradedam generuoti failus...\n";
+        GeneruotiFaila("Studentai1000.txt", 1000);
+        GeneruotiFaila("Studentai10000.txt", 10000);
+        GeneruotiFaila("Studentai100000.txt", 100000);
+        GeneruotiFaila("Studentai1000000.txt", 1000000);
+        GeneruotiFaila("Studentai10000000.txt", 10000000);
+        cout<<"Generavimas baigtas.\n";
+    }
     vector <Studentas> Grupe;
+
     
     cout<<"Pasirinkite duomenu isvedimo buda: "<<endl;
     cout<<"1 - Ivesti ranka"<<endl;
@@ -135,7 +161,7 @@ int main(){
     string ivBudasStr;
 
     while(true){
-       cin>>ivBudasStr;
+        cin>>ivBudasStr;
         if(!ivBudasStr.empty() && all_of(ivBudasStr.begin(), ivBudasStr.end(), ::isdigit)){
             ivBudas = stoi(ivBudasStr);
             if(ivBudas >= 1 && ivBudas <= 3) break;
@@ -218,55 +244,51 @@ int main(){
     
     ofstream out("rezultatai.txt");
     
+    cout<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
     out<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
 
-    if(pasirinkimas == 1) out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
-    else if(pasirinkimas == 2) out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
-    else out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    if(pasirinkimas == 1){
+        cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+        out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+    } else if(pasirinkimas == 2){
+        cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    } else{
+        cout<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    }
 
+    cout<<"--------------------------------------------------------------------"<<endl;
     out<<"--------------------------------------------------------------------"<<endl;
-    for(auto Past:Grupe){
+    for(const auto &Past:Grupe){
+        cout<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
         out<<setw(15)<<left<<Past.var<<setw(20)<<left<<Past.pav;
         
-        if(pasirinkimas == 1) out<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galVid<<endl;
-        else if(pasirinkimas == 2) out<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
-        else out<<setw(18)<<left<<fixed<<setprecision(2)<<Past.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<Past.galMed<<endl;
-        }
+    if(pasirinkimas == 1){
+        cout<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+        out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
+    } else if(pasirinkimas == 2){
+        cout<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    } else{
+        cout<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+        out<<setw(18)<<left<<"Galutinis (Vid.)"<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
+    }
+}
 
+    cout<<"---------------------------------------------------------------------"<<endl;
     out<<"---------------------------------------------------------------------"<<endl;
     cout<<"Rezultatai issaugoti faile rezultatai.txt"<<endl;
 }
 
     Studentas Stud_iv(bool atsitiktinis){
         int laik_nd, sum=0;
+        
         Studentas Pirmas;
-
         cout<<"Ivesk studento duomenis"<<endl;
-        string vardas;
-        while(true){
-            cout<<"Vardas: ";
-            cin>> vardas;
-            bool tikRaides = all_of(vardas.begin(), vardas.end(),
-                [](unsigned char c){ return std::isalpha(c); });
-            if (!vardas.empty() && tikRaides){
-                Pirmas.var = vardas;
-                break;
-            }
-            cout<<"Neteisinga ivestis, varde gali buti tik raides (A-Z)"<<endl;
-        }
-        string pavarde;
-        while (true){
-            cout<<"Pavarde: ";
-            cin>> pavarde;
-            bool tikRaides = all_of(pavarde.begin(), pavarde.end(),
-                [](unsigned char c){ return std::isalpha(c); });
-            if (!pavarde.empty() && tikRaides){
-                Pirmas.pav = pavarde;
-                break;
-        }
-        cout <<"Neteisinga ivestis, pavardeje gali buti tik raides (A-Z)"<<endl;
-    }
-
+        cout<<"Vardas: "; cin>>Pirmas.var;
+        cout<<"Pavarde: "; cin>>Pirmas.pav;
+           
     if (atsitiktinis){
         int nd_kiekis = rand()%10 + 1;
         for(int i=0; i<nd_kiekis; i++){
@@ -303,7 +325,6 @@ int main(){
                     sum += laik_nd;
                     continue;
                 }
-                if(laik_nd == 0) break;
             }
             cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
         }
@@ -320,6 +341,7 @@ int main(){
         }
     }
 
+    
     if(!Pirmas.nd.empty()){
         double vid = double(sum)/double(Pirmas.nd.size());
         Pirmas.galVid=vid*0.4+0.6*Pirmas.egz;
@@ -330,4 +352,3 @@ int main(){
     }
     return Pirmas;
 }
-
