@@ -11,4 +11,4 @@ v.01 commit 282acf3 - Sutvarkyta dar daugiau įvedimu ir output'as
 v.01 commit 7f20ba3 - Dabar galima rūšiuoti pagal vardą arba pavardę, rezultatai įrašomi į atskira tekstinį failą. Padaryta/pataisyta taip, kad į studentų vardą ar pavardę negalima būtų rašyti skaičių. Bei šiaip padaryta, kad atrodytu labiau esthetically pleasing paskutinis, galutinis variantas.
 
 v.02 commit f819fa9 - pridėtas failų generavimas
-
+v.02 commit 94cc77f - patobulintas kodas ir failų generavimas
