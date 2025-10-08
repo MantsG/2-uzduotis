@@ -66,6 +66,24 @@ double median(vector<int> &v){
 
 Studentas Stud_iv(bool atsitiktinis);
 
+void GeneruotiFaila(const string& failoVardas, int kiek){
+    ofstream out(failoVardas, std::ios::out);
+
+    out<<"Vardas Pavarde";
+    out<<" ND1 ND2 ND3 ND4 ND5 ND6 ND7 ND8 ND9 ND10 Egz\n";
+
+    for(int i=1; i<=kiek; i++){
+        out<<"Vardas"<<i<<" Pavarde"<<i;
+        int nd_kiekis = rand() % 10 + 1;
+        for(int j=0; j<<nd_kiekis; j++){
+            out<<' '<<(rand() % 10 + 1);
+        }
+    out<<' '<<(rand() % 10 + 1)<< '\n';
+    }
+    out.close();
+    cout<<"Sugeneruotas failas: "<<failoVardas<<" ("<<kiek<<" irasai)\n";
+}
+
 vector<Studentas> SkaitytiFaila(const string &failoVardas){
     vector<Studentas> grupe;
     ifstream in(failoVardas);
@@ -312,3 +330,4 @@ int main(){
     }
     return Pirmas;
 }
+
