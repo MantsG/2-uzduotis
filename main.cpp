@@ -1,13 +1,11 @@
 #include <iostream>
-#include <iomanip>
-#include <vector>
-#include <string>
 #include <algorithm>
-#include <cstdlib>
-#include <ctime>
 #include <fstream>
-#include <cctype>
-#include <sstream>
+#include <iomanip>
+#include "Studentas.h"
+#include "Utils.h"
+#include "Failai.h"
+#include "Ivedimas.h"
 
 using std::cout;
 using std::cin;
@@ -23,115 +21,7 @@ using std::sort;
 using std::ifstream;
 using std::ofstream;
 
-struct Studentas{
-    string var;
-    string pav;
-    vector <int> nd;
-    int egz;
-    double galVid;
-    double galMed;
-    };
 
-bool naturalCompare(const string& a, const string& b){
-    size_t i=0, j=0;
-    while(i < a.size() && j < b.size()){
-        if(std::isdigit(static_cast<unsigned char>(a[i])) && std:isdigit(static_cast<unsigned char>(b[j]))){
-            size_t i2 = i;
-            while(i2 < a.size() && std::isdigit(static_cast<unsigned char>(a[i2]))) ++i2;
-            size_t j2 = j;
-            while(j2 < b.size() && std::isdigit(static_cast<unsigned char>(b[j2]))) ++j2;
-
-            int numA = 0;
-            for(size_t k=i; k<i2; ++k) numA = numA*10 + (a[k]-'0');
-            int numB = 0;
-            for(size_t k=j; k<j2; ++k) numB = numB*10 + (b[k]-'0');
-            
-            if(numA != numB) return numA <numB;
-            i = i2;
-            j = j2;
-        } else{
-            if(a[i] != b[j]) return a[i] < b[j];
-            i++; j++;
-        }
-    }   
-     return a.size() < b.size();       
-}
-
-double median(vector<int> &v){
-    if(v.empty()) return 0.0;
-    vector<int> laik=v;
-    sort(laik.begin(), laik.end());
-    int n = laik.size();
-    if(n % 2 ==1)
-        return laik[n/2];
-    else
-        return (laik[n/2-1] + laik[n/2]) / 2.0;
-    }
-
-Studentas Stud_iv(bool atsitiktinis);
-
-void GeneruotiFaila(const string& failoVardas, int kiek){
-    ofstream out(failoVardas);
-    if(!out){
-        cout<<"Nepavyko sukurti failo"<<failoVardas<<"\n";
-        return;
-    }
-
-    out<<"Vardas Pavarde";
-    for(int i=1; i<=10; i++) out<<" ND"<<i;
-    out<<" Egz"<<endl;
-
-    for(int i=1; i<=kiek; i++){
-        out<<"Vardas"<<i<<" Pavarde"<<i;
-        for(int j=0; j<10; j++){
-            out<<" "<<(rand() % 10 + 1);
-        }
-        out<<" "<<(rand() % 10 + 1)<<endl;
-    }
-    cout<<"Sugeneruotas failas: "<<failoVardas<<" ("<<kiek<<" irasai)\n";
-}
-
-vector<Studentas> SkaitytiFaila(const string &failoVardas){
-    vector<Studentas> grupe;
-    ifstream in(failoVardas);
-    if(!in){
-        cout<<"Nepavyko atidaryti failo"<<endl;
-        return grupe;
-    }
-    string vard, pavarde;
-    string header;
-    std::getline(in, header);
-
-    while(in >> vard >> pavarde){
-        Studentas s;
-        s.var = vard;
-        s.pav = pavarde;
-        s.nd.clear();
-
-        int paz;
-        vector<int> laik;
-        string restOfLine;
-        getline(in, restOfLine);
-        std::istringstream iss(restOfLine);
-        while(iss>>paz){
-            laik.push_back(paz);
-        }
-        
-        if(!laik.empty()){
-            s.egz = laik.back();
-            laik.pop_back();
-            s.nd = laik;
-
-            double vid = 0;
-            for(int x: s.nd) vid += x;
-            if(!s.nd.empty()) vid /= s.nd.size();
-            s.galVid = vid*0.4 + 0.6*s.egz;
-            s.GalMed = median(s.nd)*0.4 + 0.6*s.egz;
-        }
-        grupe.push_back(s);
-    }
-    return grupe;
-}
 
 
 int main(){
@@ -291,76 +181,3 @@ spausdinti(outK, kietiakai);
 
 
 }
-
-    Studentas Stud_iv(bool atsitiktinis){
-        int laik_nd, sum=0;
-        
-        Studentas Pirmas;
-        cout<<"Ivesk studento duomenis"<<endl;
-        cout<<"Vardas: "; cin>>Pirmas.var;
-        cout<<"Pavarde: "; cin>>Pirmas.pav;
-           
-    if (atsitiktinis){
-        int nd_kiekis = rand()%10 + 1;
-        for(int i=0; i<nd_kiekis; i++){
-            laik_nd = rand()%10 + 1;
-            Pirmas.nd.push_back(laik_nd);
-            sum+=laik_nd;
-    }
-    Pirmas.egz = rand()%10 + 1;
-    cout<<"Sugeneruoti "<<nd_kiekis<<" namu darbu pazymiai ir egzaminas"<<endl;
-}
-    else{
-        string ndStr;
-        cin.ignore();
-        
-        cout<<"Iveskite studento("<<Pirmas.var<<" "<<Pirmas.pav<<") namu darbu pazymius (Paspauskite enter 2 kartus, kad baigti): "<<endl;
-        
-        int enter= 0;
-        
-        while (true){
-            cout<<Pirmas.nd.size()+1<<": ";
-            std::getline(cin, ndStr);
-                    
-            if(ndStr.empty()){
-                enter++;
-                if(enter == 2) break;
-                continue;
-            }
-            enter = 0;
-            
-            if(all_of(ndStr.begin(), ndStr.end(), ::isdigit)){
-                laik_nd = stoi(ndStr);
-                if(laik_nd >= 1 && laik_nd <= 10){
-                    Pirmas.nd.push_back(laik_nd);
-                    sum += laik_nd;
-                    continue;
-                }
-            }
-            cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
-        }
-        string egzStr;
-
-        while(true){
-            cout<<"Studento egzamino pazimys: ";
-            cin>>egzStr;
-            if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
-                Pirmas.egz = stoi(egzStr);
-                if(Pimras.egz >= 1 && Pirmas.egz <= 10) break;
-            }
-            cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
-        }
-    }
-
-    
-    if(!Pirmas.nd.empty()){
-        double vid = double(sum)/double(Pirmas.nd.size());
-        Pirmas.galVid=vid*0.4+0.6*Pirmas.egz;
-        Pirmas.galMed=median(Pirmas.nd)*0.4+0.6*Pirmas.egz;
-    } else{
-        Pirmas.galVid=0.6*Pirmas.egz;
-        Pirmas.galMed=0.6*Pirmas.egz;
-    }
-    return Pirmas;
-}
-
