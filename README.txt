@@ -18,3 +18,9 @@ v.02 commit e3889c5 - Sukurti headers ir cpp failai (pataisytas main.cpp)
 v.02 commit 4bdf760 - programos veikimo greičio analizės
 v.02 commit 3dc69b1 - Patobulintas laiko skaičiavimas ir pridėtas pasirinkimas, kokio dydžio sukurti failą bei pasirinkti failo pavadinimą, iš kurio skaityti duomenis (sudėti paskutiniai štrihai)
 v.02 commit f7f7ffa - Pataisytos sintaksės klaidos, kurios neleido failams pasileisti
+
+Failų laikai: 1000 irašų failas: generavimas - 3ms, nuskaitymas 3ms, rusiavimas ir isvedimas 11ms. 
+              10000 irašų failas: generavimas - 34ms, nuskaitymas 29ms, rusiavimas ir isvedimas 83ms.
+              100000 irašų failas: generavimas - 336ms, nuskaitymas 276ms, rusiavimas ir isvedimas 944ms. 
+              1000000 irašų failas: generavimas - 3.31s, nuskaitymas 2.79s, rusiavimas ir isvedimas 10.63s. 
+              10000000 irašų failas: generavimas - 32.43s, nuskaitymas 28.90s, rusiavimas ir isvedimas 129.74s.
