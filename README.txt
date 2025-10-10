@@ -15,3 +15,4 @@ v.02 commit 94cc77f - patobulintas kodas ir failų generavimas
 v.02 commit 5e2f438 - pataisytos atidumo klaidos bei padarytas išskirstymas į 2 failus (vargsiukai ir kietiakai)
 v.02 commit 3a8e0ec - Pridėti 7 failai: Failai.cpp; Failai.h; Studentas.h; Ivedimas.cpp; Ivedimas.h; Utils.cpp; Utils.h;
 v.02 commit e3889c5 - Sukurti headers ir cpp failai (pataisytas main.cpp)
+v.02 commit 4bdf760 - programos veikimo greičio analizės
