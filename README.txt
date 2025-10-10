@@ -16,3 +16,4 @@ v.02 commit 5e2f438 - pataisytos atidumo klaidos bei padarytas išskirstymas į 
 v.02 commit 3a8e0ec - Pridėti 7 failai: Failai.cpp; Failai.h; Studentas.h; Ivedimas.cpp; Ivedimas.h; Utils.cpp; Utils.h;
 v.02 commit e3889c5 - Sukurti headers ir cpp failai (pataisytas main.cpp)
 v.02 commit 4bdf760 - programos veikimo greičio analizės
+v.02 commit 3dc69b1 - Patobulintas laiko skaičiavimas ir pridėtas pasirinkimas, kokio dydžio sukurti failą bei pasirinkti failo pavadinimą, iš kurio skaityti duomenis (sudėti paskutiniai štrihai)
