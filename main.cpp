@@ -24,26 +24,47 @@ using std::ofstream;
 using namespace std::chrono;
 
 int main(){
+
+    string failoVardas;
     
     srand(time(0));
-    
-    cout<<"Ar generuoti 5 studentu failus (1k, 10k, 100k, 1m, 10m)? 1 - taip, 2 - ne: ";
-    string genStr;
-    cin>>genStr;
-    if(!genStr.empty() && all_of(genStr.begin(), genStr.end(), ::isdigit) && stoi(genStr) == 1){
-        auto startGen = high_resolution_clock::now();
-        
-        cout<<"Pradedam generuoti failus...\n";
-        GeneruotiFaila("Studentai1000.txt", 1000);
-        GeneruotiFaila("Studentai10000.txt", 10000);
-        GeneruotiFaila("Studentai100000.txt", 100000);
-        GeneruotiFaila("Studentai1000000.txt", 1000000);
-        GeneruotiFaila("Studentai10000000.txt", 10000000);
-        cout<<"Generavimas baigtas.\n";
 
+    cout<<"Pasirinkite faila generuoti (0 - negeneruoti failo):\n";
+    cout<<"1 - 1000 studentu failas\n";
+    cout<<"2 - 10000 studentu failas\n";
+    cout<<"3 - 100000 studentu failas\n";
+    cout<<"4 - 1000000 studentu failas\n";
+    cout<<"5 - 10000000 studentu failas\n";
+
+    int GenPasirinkimas;
+    string GenPasirinkimasStr;
+    while(true){
+        cin>>GenPasirinkimasStr;
+        if(!GenPasirinkimasStr.empty() && all_of(GenPasirinkimasStr.begin(), GenPasirinkimasStr.end(), ::isdigit)){
+            GenPasirinkimas = stoi(GenPasirinkimasStr);
+            if(GenPasirinkimas >= 0 && GenPasirinkimas <= 5) break;
+        }
+    cout<<"Neteisinga ivestis, iveskite skaiciu nuo 0 iki 5\n";
+    }
+
+    if(GenPasirinkimas != 0){
+        auto startGen = high_resolution_clock::now();
+        switch(GenPasirinkimas){
+            case 1: GeneruotiFaila("Studentai1000.txt", 1000); break;
+            case 2: GeneruotiFaila("Studentai10000.txt", 10000); break;
+            case 3: GeneruotiFaila("Studentai100000.txt", 100000); break;
+            case 4: GeneruotiFaila("Studentai1000000.txt", 1000000); break;
+            case 5: GeneruotiFaila("Studentai10000000.txt", 10000000); break;
+        }
         auto endGen = high_resolution_clock::now();
-        auto trukmeGen = duration_cast<seconds>(endGen - startGen).count();
-        cout<<"Failu generavimas uztruko: "<<trukmeGen<<" s\n";
+        auto trukmeGen = duration_cast<milliseconds>(endGen - startGen).count();
+
+        if(trukmeGen > 1000)
+            cout<<"Failo generavimas uztruko: "<<fixed<<setprecision(2)<<trukmeGen/1000.0<<" s\n";
+        else
+            cout<<"Failo generavimas uztruko: "<<trukmeGen<<" ms\n";
+    }else {
+        cout<<"Failo generavimas nepasirinktas.\n";
     }
     
     vector <Studentas> Grupe;
@@ -66,13 +87,20 @@ int main(){
     }
 
     if(ivBudas == 3){
+        if(failoVardas.empty()){
+            cout<<"Iveskite failo pavadinimas nuskaitymui: ";
+            cin>>failoVardas;
+        }
         auto startRead = high_resolution_clock::now();
 
-        Grupe = SkaitytiFaila("Studentai10000000.txt");
+        Grupe = SkaitytiFaila(failoVardas);
 
         auto endRead = high_resolution_clock::now();
         auto trukmeRead = duration_cast<milliseconds>(endRead - startRead).count();
-        cout<<"Failo nuskaitymas uztruko: "<<trukmeRead<<" ms\n";
+        if(trukmeRead > 1000)
+            cout<<"Failo nuskaitymas uztruko: "<<trukmeRead/1000.0<<" s\n";
+        else
+            cout<<"failo nuskaitymas uztruko: "<<trukmeRead<<" ms\n";
         if(Grupe.empty()){
             cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<endl;
             return 0;
@@ -193,6 +221,9 @@ int main(){
 
     auto endSort = high_resolution_clock::now();
     auto trukmeSort = duration_cast<milliseconds>(endSort - startSort).count();
-    cout<<"Studentu rusiavimas ir isvedimas i failus uztruko: "<<trukmeSort<<" ms\n";
+    if(trukmeSort > 1000)
+        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSort/1000.0<<" s\n";
+    else
+        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
 }
