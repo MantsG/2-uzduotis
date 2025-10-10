@@ -102,7 +102,7 @@ int main(){
         else
             cout<<"failo nuskaitymas uztruko: "<<trukmeRead<<" ms\n";
         if(Grupe.empty()){
-            cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<endl;
+            cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<<endl;
             return 0;
         }
     }        
@@ -142,7 +142,7 @@ int main(){
 
         if(!pasirinkimasStr.empty() && all_of(pasirinkimasStr.begin(), pasirinkimasStr.end(), ::isdigit)){
             pasirinkimas = stoi(pasirinkimasStr);
-            if(pasirinkimas >= 1 && pasirinkimasStr <= 3) break;
+            if(pasirinkimas >= 1 && pasirinkimas <= 3) break;
         }
         cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
     }
@@ -161,12 +161,12 @@ int main(){
         cout<<"Neteisingas ivestis, iveskite skaiciu 1 arba 2"<<endl;
     }
 
-    auto startSort = high_resolution_clock::now()
+    auto startSort = high_resolution_clock::now();
     
     if(rusiavimas == 1){
         sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
             return naturalCompare(a.var, b.var);
-        }};
+        });
     }else{ 
         sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
         return naturalCompare (a.pav, b.pav);
@@ -227,3 +227,4 @@ int main(){
         cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
 }
+
