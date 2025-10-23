@@ -138,7 +138,7 @@ int main(){
         cout<<"2 - Mediana"<<endl;
         cout<<"3 - Abu"<<endl;
 
-        cin>>pasirinkimas Str;
+        cin>>pasirinkimasStr;
 
         if(!pasirinkimasStr.empty() && all_of(pasirinkimasStr.begin(), pasirinkimasStr.end(), ::isdigit)){
             pasirinkimas = stoi(pasirinkimasStr);
@@ -227,4 +227,5 @@ int main(){
         cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
 }
+
 
