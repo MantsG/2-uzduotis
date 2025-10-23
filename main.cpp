@@ -296,7 +296,7 @@ int main(){
             cin>>egzStr;
             if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
                 Pirmas.egz = stoi(egzStr);
-                if(Pimras.egz >= 1 && Pirmas.egz <= 10) break;
+                if(Pirmas.egz >= 1 && Pirmas.egz <= 10) break;
             }
             cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
         }
@@ -312,4 +312,5 @@ int main(){
     }
     return Pirmas;
 }
+
 
