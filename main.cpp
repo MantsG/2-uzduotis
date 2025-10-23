@@ -35,7 +35,7 @@ struct Studentas{
 bool naturalCompare(const string& a, const string& b){
     size_t i=0, j=0;
     while(i < a.size() && j < b.size()){
-        if(std::isdigit(a[i]) && std:isdigit(b[j])){
+        if(std::isdigit(a[i]) && std::isdigit(b[j])){
             size_t i2 = i;
             while(i2 < a.size() && std::isdigit(a[i2])) i2++;
             int numA = std::stoi(a.substr(i, i2 - i));
@@ -97,7 +97,7 @@ vector<Studentas> SkaitytiFaila(const string &failoVardas){
             for(int x: s.nd) vid += x;
             if(!s.nd.empty()) vid /= s.nd.size();
             s.galVid = vid*0.4 + 0.6*s.egz;
-            s.GalMed = median(s.nd)*0.4 + 0.6*s.egz;
+            s.galMed = median(s.nd)*0.4 + 0.6*s.egz;
         }
         grupe.push_back(s);
     }
@@ -129,7 +129,7 @@ int main(){
         Grupe = SkaitytiFaila("studentai10000.txt");
         
         if(Grupe.empty()){
-            cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<endl;
+            cout<<"Programa uždaroma, nes nepavyko nuskaityti failo"<<endl;
             return 0;
         }
     }        
@@ -165,11 +165,11 @@ int main(){
         cout<<"2 - Mediana"<<endl;
         cout<<"3 - Abu"<<endl;
 
-        cin>>pasirinkimas Str;
+        cin>>pasirinkimasStr;
 
         if(!pasirinkimasStr.empty() && all_of(pasirinkimasStr.begin(), pasirinkimasStr.end(), ::isdigit)){
             pasirinkimas = stoi(pasirinkimasStr);
-            if(pasirinkimas >= 1 && pasirinkimasStr <= 3) break;
+            if(pasirinkimas >= 1 && pasirinkimas <= 3) break;
         }
         cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
     }
@@ -191,7 +191,7 @@ int main(){
     if(rusiavimas == 1){
         sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
             return naturalCompare(a.var, b.var);
-        }};
+        });
     }else{ 
         sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
         return naturalCompare (a.pav, b.pav);
@@ -312,3 +312,4 @@ int main(){
     }
     return Pirmas;
 }
+
