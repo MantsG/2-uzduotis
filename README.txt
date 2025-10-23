@@ -9,3 +9,4 @@ v.01 commit 659688c - ištrintas cin>>ivBudas.
 v.01 commit 575315c - Jeigu failo nepavyksta rasti/atidaryti/nuskaityti programa yra uždaroma, patobulinti įvedimai.
 v.01 commit 282acf3 - Sutvarkyta dar daugiau įvedimu ir output'as
 v.01 commit 7f20ba3 - Dabar galima rūšiuoti pagal vardą arba pavardę, rezultatai įrašomi į atskira tekstinį failą. Padaryta/pataisyta taip, kad į studentų vardą ar pavardę negalima būtų rašyti skaičių. Bei šiaip padaryta, kad atrodytu labiau esthetically pleasing paskutinis, galutinis variantas.
+v.01 commit dcab779 - Pataisytos visos sifravimo bei atidumo klaidos.
