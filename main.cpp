@@ -164,7 +164,7 @@ int main(){
         cout<<"Neteisingas ivestis, iveskite skaiciu 1 arba 2"<<endl;
     }
 
-    auto startSort = high_resolution_clock::now();
+    auto startSkirstymas = high_resolution_clock::now();
 
     Konteineris vargsiukai;
     Konteineris kietiakai;
@@ -198,6 +198,7 @@ int main(){
         });
     }
 
+    
     ofstream outV("vargsiukai.txt");
     ofstream outK("kietiakai.txt");
 
@@ -216,20 +217,18 @@ int main(){
     }
 };
 
+    auto endSkirstymas = high_resolution_clock::now();
+    auto trukmeSkirstymas = duration_cast<milliseconds>(endSkirstymas - startSkirstymas).count();
+    if (trukmeSkirstymas > 1000)
+        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
+    else
+        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
+
+    
+
     spausdinti(outV, vargsiukai);
     spausdinti(outK, kietiakai);
 
-    auto endSort = high_resolution_clock::now();
-    auto trukmeSort = duration_cast<milliseconds>(endSort - startSort).count();
-    if(trukmeSort > 1000)
-        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSort/1000.0<<" s\n";
-    else
-        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
+    
 }
-
-
-
-
-
-
