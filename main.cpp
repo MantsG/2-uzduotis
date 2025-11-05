@@ -137,6 +137,10 @@ int main(){
         bool atsitiktinis = (ivBudas == 2);
         for(auto z=0; z<m; z++){
             Grupe.push_back(Stud_iv(atsitiktinis));
+
+            if(!atsitiktinis){
+                cout<<"Studento objektas saugomas adresu: " << &Grupe.back() <<endl;
+            }
         }
     }
     
@@ -260,6 +264,7 @@ int main(){
 
 
 }
+
 
 
 
