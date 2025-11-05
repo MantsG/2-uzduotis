@@ -13,6 +13,10 @@ struct Studentas{
     double galMed;
 };
 
-using Konteineris = std::list<Studentas>;
+#define NAUDOTI_LIST// uzkomentuoti, kad naudoti vector
 
+#ifdef NAUDOTI_LIST
+    using Konteineris = std::list<Studentas>;
+#else
+    using Konteineris = std::vector<Studentas>;
 #endif
