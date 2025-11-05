@@ -13,4 +13,6 @@ struct Studentas{
     double galMed;
 };
 
+using Konteineris = std::list<Studentas>;
+
 #endif
