@@ -14,7 +14,8 @@ struct Studentas{
     double galMed;
 };
 
-#define NAUDOTI_LIST// uzkomentuoti, kad naudoti vector
+#define NAUDOTI_VECTOR
+//#define NAUDOTI_LIST
 
 #ifdef NAUDOTI_LIST
     using Konteineris = std::list<Studentas>;
