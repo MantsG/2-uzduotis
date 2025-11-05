@@ -42,5 +42,11 @@ v.03 commit 7048f7a - Faile Studentas.h pridėta pragma once.
 v.03 commit f704b2c - Prie main.cpp pridėtas NAUDOTI_LIST.
 v.03 commit 372756f - Paskutiniai pakeitimai Studentas.h.
 
-Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB.
+Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB. Skaitymo greitis 7,000 MB/s, o rašymo 5000 MB/s.
+Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas 3 ms, rusiavimas ir skirstymas 0 ms, isvedimas 5.2 ms.
+                      10000 įrašų: (5 bandymai) Generavimas 32.4 ms, nuskaitymas 28.6 ms, rusiavimas ir skirstymas 5.2 ms, isvedimas 45 ms.
+                      100000 įrašų (5 bandymai) Generavimas 323 ms, nuskaitymas 293.4 ms, rusiavimas ir skirstymas 64.4 ms, isvedimas 455 ms.
+                      1000000 įrašų (5 bandymai) Generavimas 3.25 s, nuskaitymas 2.986 s, rusiavimas ir skirstymas 910.2 ms, isvedimas 4.644 s.
+                      10000000 įrašų (5 bandymai) Generavimas 33.044 s, nuskaitymas 29.196 s, rusiavimas ir skirstymas 12.132 s, isvedimas 45.59 s.
+
 <img width="979" height="510" alt="image" src="https://github.com/user-attachments/assets/92e75b2f-6dc1-487a-985a-8257db7a5ec1" />
