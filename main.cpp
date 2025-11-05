@@ -24,6 +24,7 @@ using std::sort;
 using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
+
 using Konteineris = std::vector<Studentas>;
 
 int main(){
@@ -197,12 +198,28 @@ int main(){
              return a.galVid < b.galVid;
         });
     }
+    
+    auto endSkirstymas = high_resolution_clock::now();
+    auto trukmeSkirstymas = duration_cast<milliseconds>(endSkirstymas - startSkirstymas).count();
+    if (trukmeSkirstymas > 1000)
+        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
+    else
+        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
 
+    
+    auto startIsvedimas = high_resolution_clock::now();
     
     ofstream outV("vargsiukai.txt");
     ofstream outK("kietiakai.txt");
 
-    auto spausdinti = [&](ofstream &out, const vector<Studentas>& grupe){
+    auto endIsvedimas = high_resolution_clock::now();
+    auto trukmeIsvedimas = duration_cast<milliseconds>(endIsvedimas - startIsvedimas).count();
+    if(trukmeIsvedimas >1000)
+        cout<<"Failo isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
+    else
+        cout<<"Failu isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
+
+    auto spausdinti = [&](ofstream &out, const Konteineris& grupe){
         out<<setw(15)<<left<<"Vardas"<<setw(20)<<left<<"Pavarde";
         if(pasirinkimas == 1) out<<setw(16)<<left<<"Galutinis (Vid.)"<<endl;
         else if(pasirinkimas == 2) out<<setw(16)<<left<<"Galutinis (Med.)"<<endl;
@@ -217,13 +234,7 @@ int main(){
     }
 };
 
-    auto endSkirstymas = high_resolution_clock::now();
-    auto trukmeSkirstymas = duration_cast<milliseconds>(endSkirstymas - startSkirstymas).count();
-    if (trukmeSkirstymas > 1000)
-        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
-    else
-        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
-
+    
     
 
     spausdinti(outV, vargsiukai);
@@ -232,3 +243,4 @@ int main(){
 
     
 }
+
