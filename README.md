@@ -41,6 +41,7 @@ v.03 commit 15b1bf4 - Istrintas rusiavimas pagal varda ir pavarde, bei minor pak
 v.03 commit 7048f7a - Faile Studentas.h pridėta pragma once.
 v.03 commit f704b2c - Prie main.cpp pridėtas NAUDOTI_LIST.
 v.03 commit 372756f - Paskutiniai pakeitimai Studentas.h.
+v.03 commit d531d43 - Pridėtas ranka rašomo studento adresas Ram'e.
 
 Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB. Skaitymo greitis 7,000 MB/s, o rašymo 5000 MB/s.
 Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas 3 ms, rusiavimas ir skirstymas 0 ms, isvedimas 5.2 ms.
