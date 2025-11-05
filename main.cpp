@@ -24,7 +24,7 @@ using std::sort;
 using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
-using Konteineris = std::vector<Studentas>
+using Konteineris = std::vector<Studentas>;
 
 int main(){
 
@@ -70,7 +70,7 @@ int main(){
         cout<<"Failo generavimas nepasirinktas.\n";
     }
     
-    vector <Studentas> Grupe;
+    Konteineris Grupe;
 
     cout<<"Pasirinkite duomenu isvedimo buda: "<<endl;
     cout<<"1 - Ivesti ranka"<<endl;
@@ -166,8 +166,8 @@ int main(){
 
     auto startSort = high_resolution_clock::now();
 
-    vector<Studentas> vargsiukai;
-    vector<Studentas> kietiakai;
+    Konteineris vargsiukai;
+    Konteineris kietiakai;
 
     for(const auto &s: Grupe){
         double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
@@ -227,6 +227,7 @@ int main(){
         cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
 }
+
 
 
 
