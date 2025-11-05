@@ -27,3 +27,4 @@ Failų laikai: 1000 irašų failas: generavimas - 3ms, nuskaitymas 3ms, rusiavim
 
 v.03 commit 88b6e38 - Įvestas vidurkio ir medianos išvedimas pagal dydį.
 v.03 commit 5a27a20 - Pridėtas std::vector<Studentas>
+v.03 commit 7c310ad - Pakeisti visi <Studentas> į Konteineris
