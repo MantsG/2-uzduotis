@@ -25,8 +25,6 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
-using Konteineris = std::vector<Studentas>;
-
 int main(){
 
     string failoVardas;
@@ -151,20 +149,6 @@ int main(){
         cout<<"Neteisinga ivestis, iveskite skaiciu 1, 2 arba 3"<<endl;
     }
 
-    int rusiavimas;
-    string rusiavimasStr;
-    while(true){
-        cout<<"Pasirinkite rusiavimo buda: "<<endl;
-        cout<<"1 - pagal varda"<<endl;
-        cout<<"2 - pagal pavarde"<<endl;
-        cin>>rusiavimasStr;
-        if(!rusiavimasStr.empty() && all_of(rusiavimasStr.begin(), rusiavimasStr.end(), ::isdigit)){
-            rusiavimas = stoi(rusiavimasStr);
-            if(rusiavimas == 1 || rusiavimas == 2) break;
-        }
-        cout<<"Neteisingas ivestis, iveskite skaiciu 1 arba 2"<<endl;
-    }
-
     auto startSkirstymas = high_resolution_clock::now();
 
     Konteineris vargsiukai;
@@ -202,9 +186,9 @@ int main(){
     auto endSkirstymas = high_resolution_clock::now();
     auto trukmeSkirstymas = duration_cast<milliseconds>(endSkirstymas - startSkirstymas).count();
     if (trukmeSkirstymas > 1000)
-        cout<<"Failo rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
+        cout<<"Failo rusiavimas ir skirstymas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
     else
-        cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
+        cout<<"Failu rusiavimas ir skirstymas uztruko: "<<trukmeSkirstymas<<" ms\n";
 
     
     auto startIsvedimas = high_resolution_clock::now();
@@ -236,9 +220,10 @@ int main(){
     auto endIsvedimas = high_resolution_clock::now();
     auto trukmeIsvedimas = duration_cast<milliseconds>(endIsvedimas - startIsvedimas).count();
     if(trukmeIsvedimas >1000)
-        cout<<"Failo isvedimas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
+        cout<<"Failo isvedimas uztruko: "<<trukmeIsvedimas/1000.0<<" s\n";
     else
-        cout<<"Failu isvedimas uztruko: "<<trukmeSkirstymas<<" ms\n";
+        cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 
 }
+
