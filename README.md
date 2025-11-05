@@ -40,5 +40,7 @@ v.03 commit f9d62f2 - Dar kartą pakeistas Studentas.h.
 v.03 commit 15b1bf4 - Istrintas rusiavimas pagal varda ir pavarde, bei minor pakeitimai.
 v.03 commit 7048f7a - Faile Studentas.h pridėta pragma once.
 v.03 commit f704b2c - Prie main.cpp pridėtas NAUDOTI_LIST.
-v.03 commit 372756f - Paskutiniai pakeitimai Studentas.h. 
+v.03 commit 372756f - Paskutiniai pakeitimai Studentas.h.
+
+Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB.
 <img width="979" height="510" alt="image" src="https://github.com/user-attachments/assets/92e75b2f-6dc1-487a-985a-8257db7a5ec1" />
