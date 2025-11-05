@@ -25,6 +25,15 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
+// #define NAUDOTI_VECTOR
+#define NAUDOTI_LIST
+
+#ifdef NAUDOTI_VECTOR
+using Konteineris = std::vector<Studentas>;
+#else
+using Konteineris = std::list<Studentas>;
+#endif
+
 int main(){
 
     string failoVardas;
@@ -52,11 +61,11 @@ int main(){
     if(GenPasirinkimas != 0){
         auto startGen = high_resolution_clock::now();
         switch(GenPasirinkimas){
-            case 1: GeneruotiFaila("Studentai1000.txt", 1000); break;
-            case 2: GeneruotiFaila("Studentai10000.txt", 10000); break;
-            case 3: GeneruotiFaila("Studentai100000.txt", 100000); break;
-            case 4: GeneruotiFaila("Studentai1000000.txt", 1000000); break;
-            case 5: GeneruotiFaila("Studentai10000000.txt", 10000000); break;
+            case 1: GeneruotiFaila("Studentai1000.txt", 1000); failoVardas = "Studentai1000.txt"; break;
+            case 2: GeneruotiFaila("Studentai10000.txt", 10000); failoVardas = "Studentai10000.txt"; break;
+            case 3: GeneruotiFaila("Studentai100000.txt", 100000); failoVardas = "Studentai100000.txt"; break;
+            case 4: GeneruotiFaila("Studentai1000000.txt", 1000000); failoVardas = "Studentai1000000.txt"; break;
+            case 5: GeneruotiFaila("Studentai10000000.txt", 10000000); failoVardas = "Studentai10000000.txt"; break;
         }
         auto endGen = high_resolution_clock::now();
         auto trukmeGen = duration_cast<milliseconds>(endGen - startGen).count();
@@ -159,7 +168,31 @@ int main(){
         if(galutinis < 5.0) vargsiukai.push_back(s);
         else kietiakai.push_back(s);
     }
-
+    
+#ifdef NAUDOTI_LIST
+    if (pasirinkimas == 1){
+        vargsiukai.sort([](const Studentas &a, const Studentas &b){
+            return a.galVid < b.galVid;
+        });
+        kietiakai.sort([](const Studentas &a, const Studentas &b){
+            return a.galVid < b.galVid;
+        });
+    } else if (pasirinkimas == 2) {
+        vargsiukai.sort([](const Studentas &a, const Studentas &b){
+            return a.galMed < b.galMed;
+        });
+        kietiakai.sort([](const Studentas &a, const Studentas &b){
+            return a.galMed < b.galMed;
+        });
+    } else {
+        vargsiukai.sort([](const Studentas &a, const Studentas &b){
+            return a.galVid < b.galVid;
+        });
+        kietiakai.sort([](const Studentas &a, const Studentas &b){
+            return a.galVid < b.galVid;
+        });
+    }
+#else
     if(pasirinkimas == 1){
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
             return a.galVid < b.galVid;
@@ -182,13 +215,14 @@ int main(){
              return a.galVid < b.galVid;
         });
     }
+#endif
     
     auto endSkirstymas = high_resolution_clock::now();
     auto trukmeSkirstymas = duration_cast<milliseconds>(endSkirstymas - startSkirstymas).count();
     if (trukmeSkirstymas > 1000)
         cout<<"Failo rusiavimas ir skirstymas uztruko: "<<trukmeSkirstymas/1000.0<<" s\n";
     else
-        cout<<"Failu rusiavimas ir skirstymas uztruko: "<<trukmeSkirstymas<<" ms\n";
+        cout<<"Failo rusiavimas ir skirstymas uztruko: "<<trukmeSkirstymas<<" ms\n";
 
     
     auto startIsvedimas = high_resolution_clock::now();
@@ -226,4 +260,5 @@ int main(){
 
 
 }
+
 
