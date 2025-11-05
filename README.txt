@@ -33,4 +33,5 @@ v.03 commit c36349f - Pakeistas sort į Skirstymą ir ištrinta nereikalingų ei
 v.03 commit 5bc035f - Pakeista skirstymo vieta, pakeistas vienas <studentas> į Konteineris.
 v.03 commit 2e8dc92 - Pakeista endIsvedimas ir trukmeIsvedimas vieta kode. 
 v.03 commit bf045ee - Pakeistos rašymo klaidos ir pridėtas out.close.
-v.03 commit d7182e3 - Pakeistas failas Studentas.h
+v.03 commit d7182e3 - Pakeistas failas Studentas.h.
+v.03 commit 66059b6 - Pakeistas failas Failai.h.
