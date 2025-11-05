@@ -33,8 +33,8 @@ void GeneruotiFaila(const string& failoVardas, int kiek){
     cout<<"Sugeneruotas failas: "<<failoVardas<<" ("<<kiek<<" irasai)\n";
 }
 
-vector<Studentas> SkaitytiFaila(const string &failoVardas){
-    vector<Studentas> grupe;
+Konteineris SkaitytiFaila(const string &failoVardas){
+    Konteineris grupe;
     ifstream in(failoVardas);
     if(!in){
         cout<<"Nepavyko atidaryti failo"<<endl;
