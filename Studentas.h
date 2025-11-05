@@ -1,8 +1,8 @@
-#ifndef STUDENTAS_H_INCLUDED
-#define STUDENTAS_H_INCLUDED
-
+#include <list>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
 
 struct Studentas{
     std::string var;
