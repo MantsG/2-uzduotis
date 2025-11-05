@@ -95,12 +95,12 @@ int main(){
             cout<<"Iveskite failo pavadinimas nuskaitymui: ";
             cin>>failoVardas;
         }
-        auto start_skaitymas = high_resolution_clock::now();
+        auto startskaitymas = high_resolution_clock::now();
 
         Grupe = SkaitytiFaila(failoVardas);
 
         auto endSkaitymas = high_resolution_clock::now();
-        auto trukmeSkaitymo = duration_cast<milliseconds>(endSkaitymas - startSkaitymas).count();
+        auto trukmeSkaitymas = duration_cast<milliseconds>(endSkaitymas - startSkaitymas).count();
         if(trukmeSkaitymas > 1000)
             cout<<"Failo nuskaitymas uztruko: "<<trukmeSkaitymas/1000.0<<" s\n";
         else
@@ -230,7 +230,9 @@ int main(){
     spausdinti(outV, vargsiukai);
     spausdinti(outK, kietiakai);
 
-
+    outV.close();
+    outK.close();
+    
     auto endIsvedimas = high_resolution_clock::now();
     auto trukmeIsvedimas = duration_cast<milliseconds>(endIsvedimas - startIsvedimas).count();
     if(trukmeIsvedimas >1000)
