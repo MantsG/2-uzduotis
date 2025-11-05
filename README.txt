@@ -32,3 +32,4 @@ v.03 commit 1b24da2 - Read pakeista į Skaitymą.
 v.03 commit c36349f - Pakeistas sort į Skirstymą ir ištrinta nereikalingų eilučių.
 v.03 commit 5bc035f - Pakeista skirstymo vieta, pakeistas vienas <studentas> į Konteineris.
 v.03 commit 2e8dc92 - Pakeista endIsvedimas ir trukmeIsvedimas vieta kode. 
+v.03 commit bf045ee - Pakeistos rašymo klaidos ir pridėtas out.close.
