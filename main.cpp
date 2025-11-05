@@ -7,6 +7,8 @@
 #include "Failai.h"
 #include "Ivedimas.h"
 #include <chrono>
+#include <vector>
+#include <list>
 
 using std::cout;
 using std::cin;
@@ -162,17 +164,7 @@ int main(){
     }
 
     auto startSort = high_resolution_clock::now();
-    
-    if(rusiavimas == 1){
-        sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
-            return naturalCompare(a.var, b.var);
-        });
-    }else{ 
-        sort(Grupe.begin(), Grupe.end(), [](const Studentas &a, const Studentas &b){
-        return naturalCompare (a.pav, b.pav);
-    });
-}
-    
+
     vector<Studentas> vargsiukai;
     vector<Studentas> kietiakai;
 
@@ -182,19 +174,26 @@ int main(){
         else kietiakai.push_back(s);
     }
 
-    if(rusiavimas == 1){
+    if(pasirinkimas == 1){
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
-            return naturalCompare(a.var, b.var);
+            return a.galVid < b.galVid;
         });
         sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
-            return naturalCompare(a.var, b.var);
+            return a.galVid < b.galVid;
+        });
+    } else if (pasirinkimas == 2) {
+        sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
+            return a.galMed < b.galMed;
+        });
+        sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
+            return a.galMed < b.galMed;
         });
     } else{
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
-             return naturalCompare(a.pav, b.pav);
+             return a.galVid < b.galVid;
         });
         sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
-             return naturalCompare(a.pav, b.pav);
+             return a.galVid < b.galVid;
         });
     }
 
@@ -227,5 +226,6 @@ int main(){
         cout<<"Failu rusiavimas ir isvedimas uztruko: "<<trukmeSort<<" ms\n";
 
 }
+
 
 
