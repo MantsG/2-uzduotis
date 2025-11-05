@@ -24,3 +24,5 @@ Failų laikai: 1000 irašų failas: generavimas - 3ms, nuskaitymas 3ms, rusiavim
               100000 irašų failas: generavimas - 336ms, nuskaitymas 276ms, rusiavimas ir isvedimas 944ms. 
               1000000 irašų failas: generavimas - 3.31s, nuskaitymas 2.79s, rusiavimas ir isvedimas 10.63s. 
               10000000 irašų failas: generavimas - 32.43s, nuskaitymas 28.90s, rusiavimas ir isvedimas 129.74s.
+
+v.03 commit 88b6e38 - Įvestas vidurkio ir medianos išvedimas pagal dydį.
