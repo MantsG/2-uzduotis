@@ -102,7 +102,7 @@ int main(){
             cout<<"Iveskite failo pavadinimas nuskaitymui: ";
             cin>>failoVardas;
         }
-        auto startskaitymas = high_resolution_clock::now();
+        auto startSkaitymas = high_resolution_clock::now();
 
         Grupe = SkaitytiFaila(failoVardas);
 
@@ -260,5 +260,6 @@ int main(){
 
 
 }
+
 
 
