@@ -38,3 +38,4 @@ v.03 commit 66059b6 - Pakeistas failas Failai.h.
 v.03 commit 2ba014f - Pakeistas failas Failai.cpp.
 v.03 commit f9d62f2 - Dar kartą pakeistas Studentas.h.
 v.03 commit 15b1bf4 - Istrintas rusiavimas pagal varda ir pavarde, bei minor pakeitimai.
+v.03 commit 7048f7a - Faile Studentas.h pridėta pragma once.
