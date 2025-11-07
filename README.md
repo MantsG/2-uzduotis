@@ -49,5 +49,6 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas
                       100000 įrašų (5 bandymai) Generavimas 323 ms, nuskaitymas 293.4 ms, rusiavimas ir skirstymas 64.4 ms, isvedimas 455 ms.
                       1000000 įrašų (5 bandymai) Generavimas 3.25 s, nuskaitymas 2.986 s, rusiavimas ir skirstymas 910.2 ms, isvedimas 4.644 s.
                       10000000 įrašų (5 bandymai) Generavimas 33.044 s, nuskaitymas 29.196 s, rusiavimas ir skirstymas 12.132 s, isvedimas 45.59 s.
+                      1000000 įrašų: Su vector buvo: 330 ms, nuskaitymas 312 ms, rusiavimas ir skirstymas 146 ms, isvedimas 670 ms. Su list: Generavimas 323 ms,                          nuskaitymas 293 ms, rusiavimas ir skirstymas 64 ms, isvedimas 455 ms.
 
 <img width="979" height="510" alt="image" src="https://github.com/user-attachments/assets/92e75b2f-6dc1-487a-985a-8257db7a5ec1" />
