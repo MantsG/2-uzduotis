@@ -223,15 +223,24 @@ Grupe.shrink_to_fit();
     auto strat3_start = high_resolution_clock::now();
     Konteineris vargsiukai3;
     Konteineris kietiakai3;
+#ifdef NAUDOTI_VECTOR
 
-    if constexpr(std::is_same<Konteineris,std::vector<Studentas>>::value){
         auto middle = std::stable_partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
             double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
             return galutinis < 5.0;
         });
         vargsiukai3.insert(vargsiukai3.end(), Grupe.begin(), middle);
         kietiakai3.insert(kietiakai3.end(), middle, Grupe.end());
-    }
+
+        vargsiukai3.shrink_to_fit();
+        kietiakai3.shrink_to_fit();
+#endif // NAUDOTI_VECTOR
+    auto strat3_end = high_resolution_clock::now();
+    auto trukmeStrat3 = duration_cast<milliseconds>(strat3_end - strat3_start).count();
+    if(trukmeStrat3 > 1000)
+        cout<<"3 strategijos rusiavimas uztruko: "<<trukmeStrat3/1000.0<<" s\n";
+    else
+        cout<<"3 strategijos rusiavimas uztruko: "<<trukmeStrat3<<" ms\n";
 #ifdef NAUDOTI_LIST
     if (pasirinkimas == 1){
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
@@ -323,6 +332,7 @@ Grupe.shrink_to_fit();
 
 
 }
+
 
 
 
