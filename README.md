@@ -72,6 +72,7 @@ v1.0 commit 337a7be - pridėta 3 strategija list'ui.
 v1.0 commit f19e5fd - pakeista 2 vector'iaus strategija iš remove_if į partition.
 v1.0 commit 1b530ea - sutvarkytos klaidos.
 v1.0 commit 22812d4 - ištrintos nereikalingos eilutės.
+v1.0 commit f5e9545 - pakeista, kad būtų galima pasirinkti, kurią strategiją naudoti.
 
 Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB. Skaitymo greitis 7,000 MB/s, o rašymo 5000 MB/s.
 Naudojant vector:
