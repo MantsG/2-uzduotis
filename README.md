@@ -62,4 +62,5 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas
 #V1.0 uzduotis
 
 v1.0 commit 45beacf - sutvarkyta 1 strategija
+v1.0 commit 848ceb7 - pridėta 2 strategija vector'iui
 
