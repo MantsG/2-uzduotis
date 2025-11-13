@@ -65,4 +65,5 @@ v1.0 commit 45beacf - sutvarkyta 1 strategija.
 v1.0 commit 848ceb7 - pridėta 2 strategija vector'iui.
 v1.0 commit 1922220 - pridėti shrink_to_fit.
 v1.0 commit 8b0cf6d - pridėta 2 strategija list'ui.
+v1.0 commit 8be65f5 - pridėta 3 strategija vector'iui.
 
