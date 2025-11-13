@@ -1,5 +1,7 @@
 # 1-uzduotis
 
+#v.01 uzduotis
+
 v.01 commit 6b38210 - Buvo įkeltas pirmasis main.cpp failas. 
 v.01 commit e05a3a7 - Pridėta median funkcija.
 v.01 commit 4477047 - Pridėtas galutinis vidurkis su mediana ir namų darbai tapo nežinomas skaičius (n).
@@ -9,6 +11,8 @@ v.01 commit 659688c - ištrintas cin>>ivBudas.
 v.01 commit 575315c - Jeigu failo nepavyksta rasti/atidaryti/nuskaityti programa yra uždaroma, patobulinti įvedimai.
 v.01 commit 282acf3 - Sutvarkyta dar daugiau įvedimu ir output'as
 v.01 commit 7f20ba3 - Dabar galima rūšiuoti pagal vardą arba pavardę, rezultatai įrašomi į atskira tekstinį failą. Padaryta/pataisyta taip, kad į studentų vardą ar pavardę negalima būtų rašyti skaičių. Bei šiaip padaryta, kad atrodytu labiau esthetically pleasing paskutinis, galutinis variantas.
+
+#V0.2 uzduotis
 
 v.02 commit f819fa9 - pridėtas failų generavimas
 v.02 commit 94cc77f - patobulintas kodas ir failų generavimas
@@ -24,6 +28,8 @@ Failų laikai: 1000 irašų failas: generavimas - 3ms, nuskaitymas 3ms, rusiavim
               100000 irašų failas: generavimas - 336ms, nuskaitymas 276ms, rusiavimas ir isvedimas 944ms. 
               1000000 irašų failas: generavimas - 3.31s, nuskaitymas 2.79s, rusiavimas ir isvedimas 10.63s. 
               10000000 irašų failas: generavimas - 32.43s, nuskaitymas 28.90s, rusiavimas ir isvedimas 129.74s.
+
+#V0.3 uzduotis
 
 v.03 commit 88b6e38 - Įvestas vidurkio ir medianos išvedimas pagal dydį.
 v.03 commit 5a27a20 - Pridėtas std::vector<Studentas>.
@@ -52,3 +58,8 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas
                       1000000 įrašų: Su vector buvo: 330 ms, nuskaitymas 312 ms, rusiavimas ir skirstymas 146 ms, isvedimas 670 ms. Su list: Generavimas 323 ms,                          nuskaitymas 293 ms, rusiavimas ir skirstymas 64 ms, isvedimas 455 ms. List buvo greitesnis.
 
 <img width="979" height="510" alt="image" src="https://github.com/user-attachments/assets/92e75b2f-6dc1-487a-985a-8257db7a5ec1" />
+
+#V1.0 uzduotis
+
+v1.0 commit 45beacf - sutvarkyta 1 strategija
+
