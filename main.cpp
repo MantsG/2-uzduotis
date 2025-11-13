@@ -187,25 +187,27 @@ kietiakai.shrink_to_fit();
 
     auto strat2_start = high_resolution_clock::now();
     Konteineris vargsiukai2;
-    if constexpr(std::is_same<Konteineris,std::vector<Studentas>>::value){
-        auto it = std::remove_if(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
-            double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
-            if(galutinis < 5.0){
-                vargsiukai2.push_back(s);
-                return true;
+#ifdef NAUDOTI_VECTOR
+    auto it = std::remove_if(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
+        double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+        if(galutinis < 5.0){
+            vargsiukai2.push_back(s);
+            return true;
         }
         return false;
     });
     Grupe.erase(it, Grupe.end());
-    }else{
-        for(auto it = Grupe.begin(); it != Grupe.end(); ){
-            double galutinis = (pasirinkimas ==1? it->galVid : (pasirinkimas == 2 ? it->galMed : it->galVid));
-            if(galutinis < 5.0){
-                auto toMove = it++;
-                vargsiukai2.splice(vargsiukai2.end(), Grupe, toMove);
+    vargsiukai2.shrink_to_fit();
+    Grupe.shrink_to_fit();
+#else
+    for(auto it = Grupe.begin(); it != Grupe.end(); ){
+        double galutinis = (pasirinkimas == 1? it->galVid : (pasirinkimas == 2? it->galMed : it->galVid));
+        if(galutinis < 5.0){
+            auto toMove = it++;
+            vargsiukai2.splice(vargsiukai2.end(), Grupe, toMove);
         }else ++it;
     }
-}
+#endif //NAUDOTI_VECTOR
     
 #ifdef NAUDOTI_VECTOR
 vargsiukai2.shrink_to_fit();
@@ -321,6 +323,7 @@ Grupe.shrink_to_fit();
 
 
 }
+
 
 
 
