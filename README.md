@@ -55,11 +55,19 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3 ms, nuskaitymas
                       100000 įrašų (5 bandymai) Generavimas 323 ms, nuskaitymas 293.4 ms, rusiavimas ir skirstymas 64.4 ms, isvedimas 455 ms.
                       1000000 įrašų (5 bandymai) Generavimas 3.25 s, nuskaitymas 2.986 s, rusiavimas ir skirstymas 910.2 ms, isvedimas 4.644 s.
                       10000000 įrašų (5 bandymai) Generavimas 33.044 s, nuskaitymas 29.196 s, rusiavimas ir skirstymas 12.132 s, isvedimas 45.59 s.
-                      1000000 įrašų: Su vector buvo: 330 ms, nuskaitymas 312 ms, rusiavimas ir skirstymas 146 ms, isvedimas 670 ms. Su list: Generavimas 323 ms,                          nuskaitymas 293 ms, rusiavimas ir skirstymas 64 ms, isvedimas 455 ms. List buvo greitesnis.
+                      1000000 įrašų: Su vector buvo: 330 ms, nuskaitymas 312 ms, rusiavimas ir skirstymas 146 ms, isvedimas 670 ms. Su list: Generavimas 323 ms, nuskaitymas 293 ms, rusiavimas ir skirstymas 64 ms, isvedimas 455 ms. 
+                      List buvo greitesnis.
 
 <img width="979" height="510" alt="image" src="https://github.com/user-attachments/assets/92e75b2f-6dc1-487a-985a-8257db7a5ec1" />
 
 #V1.0 uzduotis
+Iš pradžių pasirenkama, kokio dydžio studentų failą norima generuoti (galima ir negeneruoti).
+Pasirenkamas duomenų įvedimo būdas: 1) įvesti ranka, 2) generuoti kelis atsitiktinai, 3) nuskaityti iš failo.
+1) Įvedamas studentų skaičius, jų vardai ir pavardės, tada yra surašomi namų darbų pažymiai (kai nusprendžiame, kad pakanka pažymių, du kartus paspaudžiam ENTER) ir galiausiai įvedamas egzamino pažimys. 2)
+2) Įvedamas studentų skaičius, jų vardai ir pavardės, o pažymiai yra sugeneruojami atsitiktinai. 3)
+3) Duomenys yra nuskaitomi iš failo, kurį prieš tai pasirinkome sugeneruoti.
+Po duomenų suvedimo galima pasirinkti, kaip apskaičiuoti galutinį balą, pagal vidurkį, medianą arba abu.
+Galiausiai studentai yra suskirstomi į du failus: "kietiakai.txt", kurių galutinis balas yra didesnis už 5, ir "vargsiukai.txt", kurių galutinis balas yra mažesnis už 5.
 
 v1.0 commit 45beacf - sutvarkyta 1 strategija.
 v1.0 commit 848ceb7 - pridėta 2 strategija vector'iui.
@@ -82,4 +90,10 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3.4 ms, nuskaitym
                       1000000 įrašų: (5 bandymai) Generavimas 3.308 s, nuskaitymas 2.998 s, 1 strategijos rusiavimas 316 ms, 2 strategijos rusiavimas 241.8 ms, 3 strategijos rusiavimas 204.2 ms, rusiavimas ir skirstymas 2.186 s, isvedimas 4.604 s.
                       10000000 įrašų: (5 bandymai) Generavimas 33.08 s, nuskaitymas 29.762 s, 1 strategijos rusiavimas 2.942 s, 2 strategijos rusiavimas 2.41 s, 3 strategijos rusiavimas 2.006 s, rusiavimas ir skirstymas 24.74 s, isvedimas 44.376 s.
 Naudojant list:
-Failų laiko vidurkis: 1000 įrašų: (5 bandymai) 
+Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 2.64 ms, nuskaitymas 2.09 ms, 1 strategijos rusiavimas 0 ms, 2 strategijos rusiavimas 0 ms, 3 strategijos rusiavimas 0 ms, rusiavimas ir skirstymas 0 ms, isvedimas 3.96 ms.
+                      10000 įrašų: (5 bandymai) Generavimas 26.2 ms, nuskaitymas 18.2 ms, 1 strategijos rusiavimas 2 ms, 2 strategijos rusiavimas 0 ms, 3 strategijos rusiavimas 0.6 ms, rusiavimas ir skirstymas 6.6 ms, isvedimas 33.4 ms.
+                      100000 įrašų: (5 bandymai) Generavimas 256.2 ms, nuskaitymas 180.2 ms, 1 strategijos rusiavimas 20.8 ms, 2 strategijos rusiavimas 5.2 ms, 3 strategijos rusiavimas 13.2 ms, rusiavimas ir skirstymas 84.6 ms, isvedimas 334.8 ms.
+                      1000000 įrašų: (5 bandymai) Generavimas 2.52 s, nuskaitymas 1.86 s, 1 strategijos rusiavimas 215.8 ms, 2 strategijos rusiavimas 44.8 ms, 3 strategijos rusiavimas 171.6 ms, rusiavimas ir skirstymas 1.26 s, isvedimas 3.4 s.
+                      10000000 įrašų: (5 bandymai) Generavimas 25.4 s, nuskaitymas 18.4 s, 1 strategijos rusiavimas 2.152 s, 2 strategijos rusiavimas 464.6 ms , 3 strategijos rusiavimas 1.73 s, rusiavimas ir skirstymas 16 s, isvedimas 34.8 s. 
+<img width="515" height="542" alt="image" src="https://github.com/user-attachments/assets/27b3a58a-c8b2-4b49-b299-4e96b6324b33" />
+Testavimo išvados: vector konteineryje 3 strategija (stable_partition) veikia greičiausiai, tada 2 (partition) ir 1. Tuo tarpu list konteineryje 2 strategija veikia greičiausiai, tada 3 strategija ir galiausiai 1.
