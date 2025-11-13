@@ -213,7 +213,7 @@ else if(strategijosPasirinkimas == 2){
    });
     vargsiukai.insert(vargsiukai.end(), Grupe.begin(), midle);
     Grupe.erase(Grupe.begin(), midle);
-    vargsiukai2.shrink_to_fit();
+    vargsiukai.shrink_to_fit();
     Grupe.shrink_to_fit();
 #else
     for(auto it = Grupe.begin(); it != Grupe.end(); ){
@@ -352,3 +352,4 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
