@@ -174,6 +174,10 @@ int main(){
         else kietiakai.push_back(s);
     }
 
+#ifdef NAUDOTI_VECTOR
+vargsiukai.shrink_to_fit();
+kietiakai.shrink_to_fit();
+#endif // NAUDOTI_VECTOR
     auto strat1_end = high_resolution_clock::now();
     auto trukmeStrat1 = duration_cast<milliseconds>(strat1_end - strat1_start).count();
     if(trukmeStrat1 > 1000)
@@ -195,6 +199,10 @@ int main(){
     Grupe.erase(it, Grupe.end());
     }
     
+#ifdef NAUDOTI_VECTOR
+vargsiukai2.shrink_to_fit();
+Grupe.shrink_to_fit();
+#endif // NAUDOTI_VECTOR
     auto strat2_end = high_resolution_clock::now();
     auto trukmeStrat2 = duration_cast<milliseconds>(strat2_end - strat2_start).count();
     if(trukmeStrat2 > 1000)
@@ -293,6 +301,7 @@ int main(){
 
 
 }
+
 
 
 
