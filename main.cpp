@@ -331,19 +331,4 @@ kietiakai.shrink_to_fit();
     else
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
