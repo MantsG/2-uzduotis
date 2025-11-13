@@ -25,8 +25,8 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
-#define NAUDOTI_VECTOR
-//#define NAUDOTI_LIST
+//#define NAUDOTI_VECTOR
+#define NAUDOTI_LIST
 
 #ifdef NAUDOTI_VECTOR
 using Konteineris = std::vector<Studentas>;
@@ -224,7 +224,6 @@ Grupe.shrink_to_fit();
     Konteineris vargsiukai3;
     Konteineris kietiakai3;
 #ifdef NAUDOTI_VECTOR
-
         auto middle = std::stable_partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
             double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
             return galutinis < 5.0;
@@ -234,6 +233,15 @@ Grupe.shrink_to_fit();
 
         vargsiukai3.shrink_to_fit();
         kietiakai3.shrink_to_fit();
+#else
+    for(auto it = Grupe.begin(); it != Grupe.end(); ){
+        double galutinis = (pasirinkimas == 1? it->galVid : (Pasirinkimas == 2 ? it->galMed : it->galVid));
+        if(galutinis < 5.0){
+            auto toMove = it++;
+            vargsiukai3.splice(vargsiukai3.end(), Grupe, toMove);
+        }else ++it;
+    }
+    kietiakai 3 = Grupe;
 #endif // NAUDOTI_VECTOR
     auto strat3_end = high_resolution_clock::now();
     auto trukmeStrat3 = duration_cast<milliseconds>(strat3_end - strat3_start).count();
@@ -332,6 +340,7 @@ Grupe.shrink_to_fit();
 
 
 }
+
 
 
 
