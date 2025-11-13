@@ -25,8 +25,8 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
-// #define NAUDOTI_VECTOR
-#define NAUDOTI_LIST
+#define NAUDOTI_VECTOR
+//#define NAUDOTI_LIST
 
 #ifdef NAUDOTI_VECTOR
 using Konteineris = std::vector<Studentas>;
@@ -167,12 +167,19 @@ int main(){
     Konteineris vargsiukai;
     Konteineris kietiakai;
 
+    auto strat1_start = high_resolution_clock::now();
     for(const auto &s: Grupe){
         double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
         if(galutinis < 5.0) vargsiukai.push_back(s);
         else kietiakai.push_back(s);
     }
-    
+
+    auto strat1_end = high_resolution_clock::now();
+    auto trukmeStrat1 = duration_cast<milliseconds>(strat1_end - strat1_start).count();
+    if(trukmeStrat1 > 1000)
+            cout<<"1 strategijos rusiavimas uztruko: "<<trukmeStrat1/1000.0<<" s\n";
+        else
+            cout<<"1 strategijos rusiavimas uztruko: "<<trukmeStrat1<<" ms\n"; 
 #ifdef NAUDOTI_LIST
     if (pasirinkimas == 1){
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
@@ -264,6 +271,7 @@ int main(){
 
 
 }
+
 
 
 
