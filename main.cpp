@@ -192,7 +192,7 @@ kietiakai.shrink_to_fit();
        double galutinis = (pasirinkimas == 1 ? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
        return galutinis < 5.0;
    });
-
+    vargsiukai2.insert(vargsiukai2.end(), Grupe.begin(), midle);
     Grupe.erase(Grupe.begin(), midle);
     vargsiukai2.shrink_to_fit();
     Grupe.shrink_to_fit();
@@ -204,11 +204,7 @@ kietiakai.shrink_to_fit();
             vargsiukai2.splice(vargsiukai2.end(), Grupe, toMove);
         }else ++it;
     }
-#endif //NAUDOTI_VECTOR
-    
-#ifdef NAUDOTI_VECTOR
-vargsiukai2.shrink_to_fit();
-Grupe.shrink_to_fit();
+
 #endif // NAUDOTI_VECTOR
     auto strat2_end = high_resolution_clock::now();
     auto trukmeStrat2 = duration_cast<milliseconds>(strat2_end - strat2_start).count();
@@ -337,6 +333,7 @@ Grupe.shrink_to_fit();
 
 
 }
+
 
 
 
