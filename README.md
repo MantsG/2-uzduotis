@@ -72,3 +72,13 @@ v1.0 commit 337a7be - pridėta 3 strategija list'ui.
 v1.0 commit f19e5fd - pakeista 2 vector'iaus strategija iš remove_if į partition.
 v1.0 commit 1b530ea - sutvarkytos klaidos.
 v1.0 commit 22812d4 - ištrintos nereikalingos eilutės.
+
+Sistemos parametrai: CPU: AMD Ryzen 7 5800X 8-core Processor. RAM: 32gb, DDR4, 3600MHz. SSD: Samsung SSD 980 PRO 1TB. Skaitymo greitis 7,000 MB/s, o rašymo 5000 MB/s.
+Naudojant vector:
+Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 3.4 ms, nuskaitymas 3 ms, 1 strategijos rusiavimas 0 ms, 2 strategijos rusiavimas 0 ms, 3 strategijos rusiavimas 0 ms, rusiavimas ir skirstymas 1 ms, isvedimas 5 ms.
+                      10000 įrašų: (5 bandymai) Generavimas 33.4 ms, nuskaitymas 29.2 ms, 1 strategijos rusiavimas 3 ms, 2 strategijos rusiavimas 1.2 ms, 3 strategijos rusiavimas 1 ms, rusiavimas ir skirtsymas 15 ms, isvedimas 44.8 ms.
+                      100000 įrašų: (5 bandymai) Generavimas 333.8 ms, nuskaitymas 302.2 ms, 1 strategijos rusiavimas 31.2 ms, 2 strategijos rusiavimas 23 ms, 3 strategijos rusiavimas 18.4 ms, rusiavimas ir skirstymas 182.8 ms, isvedimas 450.6 ms.
+                      1000000 įrašų: (5 bandymai) Generavimas 3.308 s, nuskaitymas 2.998 s, 1 strategijos rusiavimas 316 ms, 2 strategijos rusiavimas 241.8 ms, 3 strategijos rusiavimas 204.2 ms, rusiavimas ir skirstymas 2.186 s, isvedimas 4.604 s.
+                      10000000 įrašų: (5 bandymai) Generavimas 33.08 s, nuskaitymas 29.762 s, 1 strategijos rusiavimas 2.942 s, 2 strategijos rusiavimas 2.41 s, 3 strategijos rusiavimas 2.006 s, rusiavimas ir skirstymas 24.74 s, isvedimas 44.376 s.
+Naudojant list:
+Failų laiko vidurkis: 1000 įrašų: (5 bandymai) 
