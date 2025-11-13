@@ -70,3 +70,4 @@ v1.0 commit a4022b9 - sutvarkyta 2 vectori'iu strategija.
 v1.0 commit 76cf71a - sutvarkyta 3 vectori'iu strategija.
 v1.0 commit 337a7be - pridėta 3 strategija list'ui.
 v1.0 commit f19e5fd - pakeista 2 vector'iaus strategija iš remove_if į partition.
+v1.0 commit 1b530ea - sutvarkytos klaidos.
