@@ -25,8 +25,8 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
-//#define NAUDOTI_VECTOR
-#define NAUDOTI_LIST
+#define NAUDOTI_VECTOR
+//#define NAUDOTI_LIST
 
 #ifdef NAUDOTI_VECTOR
 using Konteineris = std::vector<Studentas>;
@@ -217,7 +217,19 @@ Grupe.shrink_to_fit();
         cout<<"2 strategijos rusiavimas uztruko: "<<trukmeStrat2/1000.0<<" s\n";
     else
         cout<<"2 strategijos rusiavimas uztruko: "<<trukmeStrat2<<" ms\n";
-        
+
+    auto strat3_start = high_resolution_clock::now();
+    Konteineris vargsiukai3;
+    Konteineris kietiakai3;
+
+    if constexpr(std::is_same<Konteineris,std::vector<Studentas>>::value){
+        auto middle = std::stable_partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
+            double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+            return galutinis < 5.0;
+        });
+        vargsiukai3.insert(vargsiukai3.end(), Grupe.begin(), middle);
+        kietiakai3.insert(kietiakai3.end(), middle, Grupe.end());
+    }
 #ifdef NAUDOTI_LIST
     if (pasirinkimas == 1){
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
@@ -309,6 +321,7 @@ Grupe.shrink_to_fit();
 
 
 }
+
 
 
 
