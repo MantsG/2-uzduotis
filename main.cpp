@@ -179,7 +179,29 @@ int main(){
     if(trukmeStrat1 > 1000)
             cout<<"1 strategijos rusiavimas uztruko: "<<trukmeStrat1/1000.0<<" s\n";
         else
-            cout<<"1 strategijos rusiavimas uztruko: "<<trukmeStrat1<<" ms\n"; 
+            cout<<"1 strategijos rusiavimas uztruko: "<<trukmeStrat1<<" ms\n";
+
+    auto strat2_start = high_resolution_clock::now();
+    Konteineris vargsiukai2;
+    if constexpr(std::is_same<Konteineris,std::vector<Studentas>>::value){
+        auto it = std::remove_if(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
+            double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+            if(galutinis < 5.0){
+                vargsiukai2.push_back(s);
+                return true;
+        }
+        return false;
+    });
+    Grupe.erase(it, Grupe.end());
+    }
+    
+    auto strat2_end = high_resolution_clock::now();
+    auto trukmeStrat2 = duration_cast<milliseconds>(strat2_end - strat2_start).count();
+    if(trukmeStrat2 > 1000)
+        cout<<"2 strategijos rusiavimas uztruko: "<<trukmeStrat2/1000.0<<" s\n";
+    else
+        cout<<"2 strategijos rusiavimas uztruko: "<<trukmeStrat2<<" ms\n";
+        
 #ifdef NAUDOTI_LIST
     if (pasirinkimas == 1){
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
@@ -271,6 +293,7 @@ int main(){
 
 
 }
+
 
 
 
