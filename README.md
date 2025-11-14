@@ -108,4 +108,4 @@ v1.1 commit be7850b - pridėta eilutė išvedimui.
 v1.1 commit 77e56a6 - pridėtos ne-member funkcijos.
 v1.1 commit ee4a780 - pridėtas Studentas.cpp failas.
 v1.1 commit 325ee1d - pridėtas galutinio balo skaičiavimas.
-
+v1.1 commit dd954f1 - pridėtas perskaitymas iš srauto.
