@@ -35,3 +35,9 @@ public:
     inline double galMed() const {return galMed_;}
     inline int egzaminas() const {return egzaminas_;}
     inline const vector<int>& nd() const {return nd_;}
+
+    inline void setVardas(const string& v) {vardas_ = v;}
+    inline void setPavarde(const string& p) {pavarde_ = p;}
+    inline void setEgzaminas(int e) {egzaminas_ = e;}
+    inline void setNd(const vector<int>& n) {nd_ = n;}
+    inline void addNd(int paz) {nd_.push_back(paz);}
