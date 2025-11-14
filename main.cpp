@@ -25,15 +25,6 @@ using std::ifstream;
 using std::ofstream;
 using namespace std::chrono;
 
-//#define NAUDOTI_VECTOR
-#define NAUDOTI_LIST
-
-#ifdef NAUDOTI_VECTOR
-using Konteineris = std::vector<Studentas>;
-#else
-using Konteineris = std::list<Studentas>;
-#endif
-
 int main(){
 
     string failoVardas;
@@ -187,7 +178,7 @@ int main(){
     if(strategijosPasirinkimas == 1){
         auto strat1_start = high_resolution_clock::now();
         for(const auto &s: Grupe){
-            double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+            double galutinis = (pasirinkimas == 1? s.galVid() : (pasirinkimas == 2 ? s.galMed() : s.galVid()));
             if(galutinis < 5.0) vargsiukai.push_back(s);
             else kietiakai.push_back(s);
     }
@@ -208,7 +199,7 @@ else if(strategijosPasirinkimas == 2){
         auto strat2_start = high_resolution_clock::now();
 #ifdef NAUDOTI_VECTOR
    auto midle = std::partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
-       double galutinis = (pasirinkimas == 1 ? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+       double galutinis = (pasirinkimas == 1 ? s.galVid() : (pasirinkimas == 2 ? s.galMed() : s.galVid()));
        return galutinis < 5.0;
    });
     vargsiukai.insert(vargsiukai.end(), Grupe.begin(), midle);
@@ -217,7 +208,7 @@ else if(strategijosPasirinkimas == 2){
     Grupe.shrink_to_fit();
 #else
     for(auto it = Grupe.begin(); it != Grupe.end(); ){
-        double galutinis = (pasirinkimas == 1? it->galVid : (pasirinkimas == 2? it->galMed : it->galVid));
+        double galutinis = (pasirinkimas == 1? it->galVid() : (pasirinkimas == 2? it->galMed() : it->galVid()));
         if(galutinis < 5.0){
             auto toMove = it++;
             vargsiukai.splice(vargsiukai.end(), Grupe, toMove);
@@ -238,7 +229,7 @@ else if(strategijosPasirinkimas == 3){
     
 #ifdef NAUDOTI_VECTOR
         auto middle = std::stable_partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
-            double galutinis = (pasirinkimas == 1? s.galVid : (pasirinkimas == 2 ? s.galMed : s.galVid));
+            double galutinis = (pasirinkimas == 1? s.galVid() : (pasirinkimas == 2 ? s.galMed() : s.galVid()));
             return galutinis < 5.0;
         });
         vargsiukai.insert(vargsiukai.end(), Grupe.begin(), middle);
@@ -247,7 +238,7 @@ else if(strategijosPasirinkimas == 3){
         kietiakai.shrink_to_fit();
 #else
     for(auto it = Grupe.begin(); it != Grupe.end(); ){
-        double galutinis = (pasirinkimas == 1? it->galVid : (Pasirinkimas == 2 ? it->galMed : it->galVid));
+        double galutinis = (pasirinkimas == 1? it->galVid() : (Pasirinkimas == 2 ? it->galMed() : it->galVid()));
         if(galutinis < 5.0){
             auto toMove = it++;
             vargsiukai.splice(vargsiukai.end(), Grupe, toMove);
@@ -265,47 +256,47 @@ else if(strategijosPasirinkimas == 3){
 #ifdef NAUDOTI_LIST
     if (pasirinkimas == 1){
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
         kietiakai.sort([](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
     } else if (pasirinkimas == 2) {
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
-            return a.galMed < b.galMed;
+            return a.galMed() < b.galMed();
         });
         kietiakai.sort([](const Studentas &a, const Studentas &b){
-            return a.galMed < b.galMed;
+            return a.galMed() < b.galMed();
         });
     } else {
         vargsiukai.sort([](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
         kietiakai.sort([](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
     }
 #else
     if(pasirinkimas == 1){
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
         sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
-            return a.galVid < b.galVid;
+            return a.galVid() < b.galVid();
         });
     } else if (pasirinkimas == 2) {
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
-            return a.galMed < b.galMed;
+            return a.galMed() < b.galMed();
         });
         sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
-            return a.galMed < b.galMed;
+            return a.galMed() < b.galMed();
         });
     } else{
         sort(vargsiukai.begin(), vargsiukai.end(), [](const Studentas &a, const Studentas &b){
-             return a.galVid < b.galVid;
+             return a.galVid() < b.galVid();
         });
         sort(kietiakai.begin(), kietiakai.end(), [](const Studentas &a, const Studentas &b){
-             return a.galVid < b.galVid;
+             return a.galVid() < b.galVid();
         });
     }
 #endif
@@ -331,10 +322,10 @@ else if(strategijosPasirinkimas == 3){
         out<<"---------------------------------------------------------------------"<<endl;
 
         for(const auto &s: grupe){
-            out<<setw(15)<<left<<s.var<<setw(20)<<left<<s.pav;
-            if(pasirinkimas == 1) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galVid<<endl;
-            else if(pasirinkimas == 2) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed<<endl;
-            else out<<setw(18)<<left<<fixed<<setprecision(2)<<s.galVid<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed<<endl;
+            out<<setw(15)<<left<<s.vardas()<<setw(20)<<left<<s.pavarde();
+            if(pasirinkimas == 1) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galVid()<<endl;
+            else if(pasirinkimas == 2) out<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed()<<endl;
+            else out<<setw(18)<<left<<fixed<<setprecision(2)<<s.galVid()<<setw(16)<<left<<fixed<<setprecision(2)<<s.galMed()<<endl;
     }
 };
 
@@ -352,4 +343,5 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
 
