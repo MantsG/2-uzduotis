@@ -10,9 +10,9 @@
 #define NAUDOTI_LIST
 
 #ifdef NAUDOTI_LIST
-    using Konteineris = std::list<Studentas>;
+    using Konteineris = std::list<class Studentas>;
 #else
-    using Konteineris = std::vector<Studentas>;
+    using Konteineris = std::vector<class Studentas>;
 #endif
 
 class Studentas{
