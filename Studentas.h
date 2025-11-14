@@ -41,3 +41,7 @@ public:
     inline void setEgzaminas(int e) {egzaminas_ = e;}
     inline void setNd(const vector<int>& n) {nd_ = n;}
     inline void addNd(int paz) {nd_.push_back(paz);}
+
+    double galBalas(double (*skaiciavimas)(vector<int>&) = median) const;
+    std::istream& readStudent(std::istream& is);
+    void skaiciuotiGalutinis();
