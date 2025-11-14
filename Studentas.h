@@ -23,7 +23,7 @@ private:
     int egzaminas_;
     double galVid_;
     double galMed_;
-};
+
 
 public:
     Studentas() : egzaminas_(0), galVid_(0), galMed_(0) {}
@@ -45,3 +45,6 @@ public:
     double galBalas(double (*skaiciavimas)(vector<int>&) = median) const;
     std::istream& readStudent(std::istream& is);
     void skaiciuotiGalutinis();
+
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
+};
