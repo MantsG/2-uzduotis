@@ -103,3 +103,4 @@ Testavimo išvados: vector konteineryje 3 strategija (stable_partition) veikia g
 v1.1 commit f4d4101 - pakeistas iš struct Studentas į class Studentas.
 v1.1 commit ddad3e2 - pridėti konstruktoriai ir getteriai.
 v1.1 commit 7a2e645 - pridėti setteriai.
+v1.1 commit fc81fea - pridėti kiti metodai.
