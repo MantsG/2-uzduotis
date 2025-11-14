@@ -1,7 +1,7 @@
 #include "Studentas.h"
 #include <iomanip>
 
-double Studentas::galBalas(double (*skaiciaviams)(std::vector<int>&)) const{
+double Studentas::galBalas(double (*skaiciavimas)(std::vector<int>&)) const{
     if (nd_.empty()) return 0.6 * egzaminas_;
     std::vector<int> kopija = nd_;
     return skaiciavimas(kopija) * 0.4 + 0.6 * egzaminas_;
@@ -37,6 +37,18 @@ std::ostream& operator<<(std::ostream& os, const Studentas& s){
       <<std::left<<std::setw(20)<<s.pavarde_
       <<std::fixed<<std::setprecision(2)
       <<std::left<<std::setw(16)<<s.galVid_
-      <<std::left<<std:setw(16)<<s.galMed_
+      <<std::left<<std::setw(16)<<s.galMed_;
       return os;
+}
+
+bool compare(const Studentas& a, const Studentas& b){
+    return a.vardas() < b.vardas();
+}
+
+bool comparePagalPavarde(const Studentas& a, const Studentas& b){
+    return a.pavarde() < b.pavarde();
+}
+
+bool comparePagalEgza(const Studentas& a, const Studentas& b){
+    return a.egzaminas() < b.egzaminas();
 }
