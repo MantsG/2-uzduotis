@@ -118,3 +118,4 @@ v1.1 commit 2d5016a - sutvarkytos Studentas.cpp atidumo klaidos.
 v1.1 commit 50952f4 - sutvarkytas Failai.cpp, kad veiktų class.
 v1.1 commit 02d3f32 - sutvarkytas Studentas.h failas, kad veiktų class.
 v1.1 commit 65e6b2c - sutvarkytas Utils.h failas, kad veiktų class.
+v1.1 commit 01b514f - pataisytos minor klaidos main.cpp ir Failai.cpp.
