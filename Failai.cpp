@@ -60,7 +60,7 @@ Konteineris SkaitytiFaila(const string &failoVardas){
         }
 
         if(!laik.empty()){
-            int.egz = laik.back();
+            int egz = laik.back();
             laik.pop_back();
             s.setNd(laik);
 
