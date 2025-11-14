@@ -119,3 +119,12 @@ v1.1 commit 50952f4 - sutvarkytas Failai.cpp, kad veiktų class.
 v1.1 commit 02d3f32 - sutvarkytas Studentas.h failas, kad veiktų class.
 v1.1 commit 65e6b2c - sutvarkytas Utils.h failas, kad veiktų class.
 v1.1 commit 01b514f - pataisytos minor klaidos main.cpp ir Failai.cpp.
+
+Naudojant struct:
+Failų laiko vidurkis: 100000 įrašų: (5 bandymai) Generavimas 333.8 ms, nuskaitymas 302.2 ms, 2 strategijos rusiavimas 23 ms, rusiavimas ir skirstymas 182.8 ms, isvedimas 450.6 ms.
+                      1000000 įrašų: (5 bandymai) Generavimas 3.308 s, nuskaitymas 2.998 s, 2 strategijos rusiavimas 241.8 ms, rusiavimas ir skirstymas 2.186 s, isvedimas 4.604 s
+Naudojant class:
+Failų laiko vidurkis: 100000 įrašų (5 bandymai) Generavimas 320.2 ms, nuskaitymas 305 ms, 2 strategijos rusiavimas 6.2 ms, rusiavimas ir skirstymas 22 ms, isvedimas 184.8 ms.
+                      1000000 įrašų (5 bandymai) Generavimas 3.254 s, nuskaitymas 3.122 s, 2 strategijos rusiavimas 70.8 ms, rusiavimas ir skirstymas 315.4 ms, isvedimas 1.9 s.
+
+Išvados: naudojant struct, nuskaitymas vyksta šiek tiek greičiau nei class, generavimas šiek tiek lėčiau, o rūšiavimas, skirstymas ir išvedimas vyksta žymiai greičiau naudojant class.
