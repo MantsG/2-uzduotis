@@ -113,3 +113,4 @@ v1.1 commit 1d51716 - pridėtas abiejų galutinių balų skaičiavimas.
 v1.1 commit d00fe96 - pridėtas išvedimas į srautą.
 v1.1 commit b8e2daa - sutvarkytas konteineris, kad veiktų class.
 v1.1 commit 721e281 - panaikintas vector arba list pasirinkimas.
+v1.1 commit 2fcb02b - sutvarkytas Ivedimas.cpp failas, kad veiktų class.
