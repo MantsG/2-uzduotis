@@ -31,3 +31,12 @@ void Studentas::skaiciuotiGalutinis(){
     galVid_=vid*0.4+0.6*egzaminas_;
     galMed_=median(nd_)*0.4+0.6*egzaminas_;
 }
+
+std::ostream& operator<<(std::ostream& os, const Studentas& s){
+    os<<std::left<<std::setw(15)<<s.vardas_
+      <<std::left<<std::setw(20)<<s.pavarde_
+      <<std::fixed<<std::setprecision(2)
+      <<std::left<<std::setw(16)<<s.galVid_
+      <<std::left<<std:setw(16)<<s.galMed_
+      return os;
+}
