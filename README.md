@@ -98,6 +98,8 @@ Failų laiko vidurkis: 1000 įrašų: (5 bandymai) Generavimas 2.64 ms, nuskaity
 <img width="515" height="542" alt="image" src="https://github.com/user-attachments/assets/27b3a58a-c8b2-4b49-b299-4e96b6324b33" />
 Testavimo išvados: vector konteineryje 3 strategija (stable_partition) veikia greičiausiai, tada 2 (partition) ir 1. Tuo tarpu list konteineryje 2 strategija veikia greičiausiai, tada 3 strategija ir galiausiai 1.
 
+#2-uzduotis
+
 #v1.1
 
 v1.1 commit f4d4101 - pakeistas iš struct Studentas į class Studentas.
