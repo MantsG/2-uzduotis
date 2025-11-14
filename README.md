@@ -110,3 +110,4 @@ v1.1 commit ee4a780 - pridėtas Studentas.cpp failas.
 v1.1 commit 325ee1d - pridėtas galutinio balo skaičiavimas.
 v1.1 commit dd954f1 - pridėtas perskaitymas iš srauto.
 v1.1 commit 1d51716 - pridėtas abiejų galutinių balų skaičiavimas.
+v1.1 commit d00fe96 - pridėtas išvedimas į srautą.
