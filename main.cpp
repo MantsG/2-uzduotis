@@ -238,7 +238,7 @@ else if(strategijosPasirinkimas == 3){
         kietiakai.shrink_to_fit();
 #else
     for(auto it = Grupe.begin(); it != Grupe.end(); ){
-        double galutinis = (pasirinkimas == 1? it->galVid() : (Pasirinkimas == 2 ? it->galMed() : it->galVid()));
+        double galutinis = (pasirinkimas == 1? it->galVid() : (pasirinkimas == 2 ? it->galMed() : it->galVid()));
         if(galutinis < 5.0){
             auto toMove = it++;
             vargsiukai.splice(vargsiukai.end(), Grupe, toMove);
@@ -343,5 +343,6 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
 
 
