@@ -46,10 +46,10 @@ Konteineris SkaitytiFaila(const string &failoVardas){
 
     while(in >> vard >> pavarde){
         Studentas s;
-        s.var = vard;
-        s.pav = pavarde;
-        s.nd.clear();
+        s.setVardas(vard);
+        s.setPavarde(pavarde);
 
+        s.setNd(std::vector<int>());
         int paz;
         vector<int> laik;
         string restOfLine;
@@ -60,15 +60,12 @@ Konteineris SkaitytiFaila(const string &failoVardas){
         }
 
         if(!laik.empty()){
-            s.egz = laik.back();
+            int.egz = laik.back();
             laik.pop_back();
-            s.nd = laik;
+            s.setNd(laik);
 
-            double vid = 0;
-            for(int x: s.nd) vid += x;
-            if(!s.nd.empty()) vid /= s.nd.size();
-            s.galVid = vid*0.4 + 0.6*s.egz;
-            s.galMed = median(s.nd)*0.4 + 0.6*s.egz;
+            s.setEgzaminas(egz);
+            s.skaiciuotiGalutinis();
         }
         grupe.push_back(s);
     }
