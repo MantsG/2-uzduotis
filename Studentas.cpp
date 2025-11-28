@@ -5,6 +5,15 @@ Studentas::~Studentas(){
     nd_.clear();
 }
 
+Studentas::Studentas(const Studentas& other){
+    vardas_ = other.vardas_;
+    pavarde_ = other.pavarde_;
+    nd_ = other.nd_
+    egzaminas_ = egzaminas_;
+    galVid_ = other.galVid_;
+    galMed_ = other.galMed_;
+}
+
 double Studentas::galBalas(double (*skaiciavimas)(std::vector<int>&)) const{
     if (nd_.empty()) return 0.6 * egzaminas_;
     std::vector<int> kopija = nd_;
@@ -56,4 +65,5 @@ bool comparePagalPavarde(const Studentas& a, const Studentas& b){
 bool comparePagalEgza(const Studentas& a, const Studentas& b){
     return a.egzaminas() < b.egzaminas();
 }
+
 
