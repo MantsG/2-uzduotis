@@ -31,7 +31,7 @@ Studentas Stud_iv(bool atsitiktinis){
         std::vector<int> tmp;
         for(int i=0; i<nd_kiekis; i++){
             laik_nd = rand()%10 + 1;
-            Pirmas.pridetiNd(laik_nd);
+            tmp.push_back(laik_nd);
             sum+=laik_nd;
         }
         Pirmas.setNd(tmp);
@@ -41,7 +41,7 @@ Studentas Stud_iv(bool atsitiktinis){
     }
     else{
         string ndStr;
-        cin.ignore();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n\);
 
         cout<<"Iveskite studento ("<<Pirmas.vardas()<<" "<<Pirmas.pavarde()<<") namu darbu pazymius (paspauskite 2 kartus ENTER, kad baigti): "<<endl;
 
