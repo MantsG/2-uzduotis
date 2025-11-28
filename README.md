@@ -160,7 +160,7 @@ Kopijavimo konstruktorius:<br/>
 `}` <br/>
 Panaudojimas: Sūkuriant naujus studentus kopijuojant iš esamų, dirbant su STL konteineriais.
 
-Kopijavimo Priskyrimo operatorius:
+Kopijavimo Priskyrimo operatorius:<br/>
 `Studentas& Studentas::operator=(const Studentas& other){` <br/>
     `if(this != &other){` <br/>
         `vardas_ = other.vardas_;` <br/>
@@ -174,7 +174,7 @@ Kopijavimo Priskyrimo operatorius:
 `}` <br/>
 Panaudojimas: Automatiškai iškviečiamas sunaikinant objektus.
 
-Išvesties operatorius: 
+Išvesties operatorius: <br/>
 `std::ostream& operator<<(std::ostream& os, const Studentas& s){` <br/>
     `os<<std::left<<std::setw(15)<<s.vardas_` <br/>
       `<<std::left<<std::setw(20)<<s.pavarde_` <br/>
@@ -184,7 +184,7 @@ Išvesties operatorius:
       `return os;` <br/>
 `}` <br/>
 
-Įvesties operatorius:
+Įvesties operatorius:<br/>
 `std::istream& operator>>(std::istream& is, Studentas& s){` <br/>
     `return s.readStudent(is);` <br/>
 `}` <br/>
