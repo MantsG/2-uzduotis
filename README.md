@@ -150,18 +150,18 @@ v1.2 commit 0e049c3 – sutvarkyta klaida “main.cpp”.
 Rule of Three implementacija:
 
 Kopijavimo konstruktorius:
-Studentas::Studentas(const Studentas& other){
+`Studentas::Studentas(const Studentas& other){
     vardas_ = other.vardas_;
     pavarde_ = other.pavarde_;
     nd_ = other.nd_;
     egzaminas_ = other.egzaminas_;
     galVid_ = other.galVid_;
     galMed_ = other.galMed_;
-}
+}`
 Panaudojimas: Sūkuriant naujus studentus kopijuojant iš esamų, dirbant su STL konteineriais.
 
 Kopijavimo Priskyrimo operatorius:
-Studentas& Studentas::operator=(const Studentas& other){
+`Studentas& Studentas::operator=(const Studentas& other){
     if(this != &other){
         vardas_ = other.vardas_;
         pavarde_ = other.pavarde_;
@@ -171,23 +171,23 @@ Studentas& Studentas::operator=(const Studentas& other){
         galMed_ = other.galMed_;
     }
     return *this;
-}
+}`
 Panaudojimas: Automatiškai iškviečiamas sunaikinant objektus.
 
 Išvesties operatorius: 
-std::ostream& operator<<(std::ostream& os, const Studentas& s){
+`std::ostream& operator<<(std::ostream& os, const Studentas& s){
     os<<std::left<<std::setw(15)<<s.vardas_
       <<std::left<<std::setw(20)<<s.pavarde_
       <<std::fixed<<std::setprecision(2)
       <<std::left<<std::setw(16)<<s.galVid_
       <<std::left<<std::setw(16)<<s.galMed_;
       return os;
-}
+}`
 
 Įvesties operatorius:
-std::istream& operator>>(std::istream& is, Studentas& s){
+`std::istream& operator>>(std::istream& is, Studentas& s){
     return s.readStudent(is);
-}
+}`
 
 <img width="456" height="295" alt="image" src="https://github.com/user-attachments/assets/1212d015-3ad6-4433-931c-a7df2e9fcfc7" />
 <img width="690" height="598" alt="image" src="https://github.com/user-attachments/assets/b5bfed17-dd22-4637-b9f1-e25d52cf3101" />
