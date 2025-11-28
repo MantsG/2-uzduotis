@@ -40,33 +40,12 @@ Konteineris SkaitytiFaila(const string &failoVardas){
         cout<<"Nepavyko atidaryti failo"<<endl;
         return grupe;
         }
-    string vard, pavarde;
+    
     string header;
     std::getline(in, header);
 
-    while(in >> vard >> pavarde){
-        Studentas s;
-        s.setVardas(vard);
-        s.setPavarde(pavarde);
-
-        s.setNd(std::vector<int>());
-        int paz;
-        vector<int> laik;
-        string restOfLine;
-        getline(in, restOfLine);
-        std::istringstream iss(restOfLine);
-        while(iss>>paz){
-            laik.push_back(paz);
-        }
-
-        if(!laik.empty()){
-            int egz = laik.back();
-            laik.pop_back();
-            s.setNd(laik);
-
-            s.setEgzaminas(egz);
-            s.skaiciuotiGalutinis();
-        }
+   Studentas s;
+   while(in>>s){ 
         grupe.push_back(s);
     }
     return grupe;
