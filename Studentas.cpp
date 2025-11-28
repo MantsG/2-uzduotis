@@ -8,7 +8,7 @@ Studentas::~Studentas(){
 Studentas::Studentas(const Studentas& other){
     vardas_ = other.vardas_;
     pavarde_ = other.pavarde_;
-    nd_ = other.nd_
+    nd_ = other.nd_;
     egzaminas_ = egzaminas_;
     galVid_ = other.galVid_;
     galMed_ = other.galMed_;
@@ -18,7 +18,7 @@ Studentas& Studentas::operator=(const Studentas& other){
     if(this != &other){
         vardas_ = other.vardas_;
         pavarde_ = other.pavarde_;
-        nd_ = other.nd_
+        nd_ = other.nd_;
         egzaminas_ = egzaminas_;
         galVid_ = other.galVid_;
         galMed_ = other.galMed_;
@@ -71,7 +71,7 @@ std::ostream& operator<<(std::ostream& os, const Studentas& s){
 }
 
 std::istream& operator>>(std::istream& is, Studentas& s){
-    return s.readStudent(is)
+    return s.readStudent(is);
 }
 
 bool compare(const Studentas& a, const Studentas& b){
@@ -85,6 +85,7 @@ bool comparePagalPavarde(const Studentas& a, const Studentas& b){
 bool comparePagalEgza(const Studentas& a, const Studentas& b){
     return a.egzaminas() < b.egzaminas();
 }
+
 
 
 
