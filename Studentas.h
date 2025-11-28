@@ -53,6 +53,7 @@ public:
     void skaiciuotiGalutinis();
 
     friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
+    friend std::istream& operator>>(std::istream& is, Studentas& s);
 };
 
 bool compare(const Studentas& a, const Studentas& b);
