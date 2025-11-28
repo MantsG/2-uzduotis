@@ -7,6 +7,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
 
 using std::cout;
 using std::endl;
