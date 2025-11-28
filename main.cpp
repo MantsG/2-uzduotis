@@ -323,6 +323,7 @@ else if(strategijosPasirinkimas == 3){
 
         for(const auto &s: grupe){
             out<<s<<'\n';
+        }
 };
 
     spausdinti(outV, vargsiukai);
@@ -339,6 +340,7 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
 
 
 
