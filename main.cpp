@@ -159,7 +159,7 @@ int main(){
     while(true){
         cout<<"Pasirinkite skirstymo strateigja:"<<endl;
         cout<<"1 - Kuriant naujus konteinerius"<<endl;
-        cout<<"2 - Naudojant partition"<<endl;
+        cout<<"2 - Naudojant remove_if"<<endl;
         cout<<"3 - Naudojant stable_partition arba list::splice"<<endl;
         cin>>stratStr;
 
@@ -198,14 +198,14 @@ kietiakai.shrink_to_fit();
 else if(strategijosPasirinkimas == 2){
         auto strat2_start = high_resolution_clock::now();
 #ifdef NAUDOTI_VECTOR
-   auto midle = std::partition(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
-       double galutinis = (pasirinkimas == 1 ? s.galVid() : (pasirinkimas == 2 ? s.galMed() : s.galVid()));
-       return galutinis < 5.0;
-   });
-    vargsiukai.insert(vargsiukai.end(), Grupe.begin(), midle);
-    Grupe.erase(Grupe.begin(), midle);
-    vargsiukai.shrink_to_fit();
-    Grupe.shrink_to_fit();
+   auto it = std::remove_if(Grupe.begin(), Grupe.end(), [&](const Studentas &s){
+        double galutinis = (pasirinkimas == 1 ? s.galVid() :
+                           (pasirinkimas == 2 ? s.galMed() : s.galVid()));
+        return galutinis >= 5.0;
+    });
+    vargsiukai.assign(Grupe.begin(), it);
+    kietiakai.assign(it, Grupe.end());
+    Grupe.erase(it, Grupe.end());
 #else
     for(auto it = Grupe.begin(); it != Grupe.end(); ){
         double galutinis = (pasirinkimas == 1? it->galVid() : (pasirinkimas == 2? it->galMed() : it->galVid()));
@@ -340,6 +340,7 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
 
 
 
