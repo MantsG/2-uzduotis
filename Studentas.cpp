@@ -37,10 +37,14 @@ std::istream& Studentas::readStudent(std::istream& is){
     nd_.clear();
     int paz;
     for(int i=0; i<10; i++){
-        if(!(is>>paz)) break;
+        if(!(is>>paz)){
+            return is;
+        }
         nd_.push_back(paz);
     }
-    is>>egzaminas_;
+    if(!(is>>egzaminas_)){
+        return is;
+    }
     skaiciuotiGalutinis();
     return is;
 }
@@ -77,6 +81,7 @@ bool comparePagalPavarde(const Studentas& a, const Studentas& b){
 bool comparePagalEgza(const Studentas& a, const Studentas& b){
     return a.egzaminas() < b.egzaminas();
 }
+
 
 
 
