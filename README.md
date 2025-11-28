@@ -130,3 +130,19 @@ Failų laiko vidurkis: 100000 įrašų (5 bandymai) Generavimas 320.2 ms, nuskai
                       1000000 įrašų (5 bandymai) Generavimas 3.254 s, nuskaitymas 3.122 s, 2 strategijos rusiavimas 70.8 ms, rusiavimas ir skirstymas 315.4 ms, isvedimas 1.9 s.
 
 Išvados: naudojant struct, nuskaitymas vyksta šiek tiek greičiau nei class, generavimas šiek tiek lėčiau, o rūšiavimas, skirstymas ir išvedimas vyksta žymiai greičiau naudojant class.
+
+#v1.2
+
+v1.2 commit ddc11cf – pridėtas „Rule of Three“ į „Studentas.h“.
+v1.2 commit 2663fb9 – pridėtas destructor į “Studentas.cpp”.
+v1.2 commit 8f55c1a – pridėtas copy constructor į “Studentas.cpp”.
+v1.2 commit 8b304be – pridėtas copy assignment į “Studentas.cpp”.
+v1.2 commit 6fecc3f – sutvarkytas nuskaitymas “Studentas.cpp”.
+v1.2 commit 78851e8 – pakeista, kad būtų toks pat formatas, kaip failų generavimas “Studentas.cpp”.
+v1.2 commit a52031b – sutvarkytos klaidos “Studentas.cpp”.
+v1.2 commit 43823e2 – patvarkytas “Ivedimas.cpp” tmp užpildymas.
+v1.2 commit c6bbdf9 – pridėtas operator>> į “Failai.cpp”.
+v1.2 commit 72ecbec – pridėtas operator<< į “main.cpp”.
+v1.2 commit 60dbed1 – pridėtas include “Studentas.h” į “Failai.cpp”.
+v1.2 commit 8449777 – pridėtas include <limits> į “Ivedimas.cpp”.
+v1.2 commit 0e049c3 – sutvarkyta klaida “main.cpp”.
