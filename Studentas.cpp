@@ -1,6 +1,10 @@
 #include "Studentas.h"
 #include <iomanip>
 
+Studentas::~Studentas(){
+    nd_.clear();
+}
+
 double Studentas::galBalas(double (*skaiciavimas)(std::vector<int>&)) const{
     if (nd_.empty()) return 0.6 * egzaminas_;
     std::vector<int> kopija = nd_;
@@ -52,3 +56,4 @@ bool comparePagalPavarde(const Studentas& a, const Studentas& b){
 bool comparePagalEgza(const Studentas& a, const Studentas& b){
     return a.egzaminas() < b.egzaminas();
 }
+
