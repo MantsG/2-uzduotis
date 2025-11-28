@@ -130,3 +130,14 @@ Failų laiko vidurkis: 100000 įrašų (5 bandymai) Generavimas 320.2 ms, nuskai
                       1000000 įrašų (5 bandymai) Generavimas 3.254 s, nuskaitymas 3.122 s, 2 strategijos rusiavimas 70.8 ms, rusiavimas ir skirstymas 315.4 ms, isvedimas 1.9 s.
 
 Išvados: naudojant struct, nuskaitymas vyksta šiek tiek greičiau nei class, generavimas šiek tiek lėčiau, o rūšiavimas, skirstymas ir išvedimas vyksta žymiai greičiau naudojant class.
+
+Testavimas atliktas buvo 5 kartus visais atvejais su 1 milijonų, 10 milijonų studentų įrašų ir išvesti jų vidurkiai.
+
+|  Optimizavimas |  EXE Dydis | Įrašų skaičius | Nuskaitymas | Rūšiavimas | Dalijimas | Vargšų įrašymas | Kietiakų įrašymas |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| O1 | 273.32 KB | 1 mil | 2.30 s | 0.24 s | 0.45 s | 1.34 s | 2.04 s |
+| O2 | 270.82 KB | 1 mil | 2.26 s | 0.24 s | 0.45 s | 1.34 s | 2.02 s |
+| O3 | 267.23 KB | 1 mil | 2.24 s | 0.22 s | 0.43 s | 1.33 s | 1.99 s |
+| O1 | 273.32 KB | 10 mil | 22.85 s | 2.96 s | 4.92 s | 13.59 s | 19.58 s |
+| O2 | 270.82 KB | 10 mil | 22.41 s | 2.99 s | 4.94 s | 13.44 s | 19.40 s |
+| O3 | 267.23 KB | 10 mil | 22.20 s | 2.74 s | 4.69 s | 13.43 s | 19.36 s |
