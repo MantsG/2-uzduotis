@@ -149,15 +149,15 @@ v1.2 commit 0e049c3 – sutvarkyta klaida “main.cpp”.
 
 Rule of Three implementacija:
 
-Kopijavimo konstruktorius:
-`Studentas::Studentas(const Studentas& other){
-    vardas_ = other.vardas_;
-    pavarde_ = other.pavarde_;
-    nd_ = other.nd_;
-    egzaminas_ = other.egzaminas_;
-    galVid_ = other.galVid_;
-    galMed_ = other.galMed_;
-}`
+Kopijavimo konstruktorius:<br/>
+`Studentas::Studentas(const Studentas& other){<br/>
+    vardas_ = other.vardas_;<br/>
+    pavarde_ = other.pavarde_;<br/>
+    nd_ = other.nd_;<br/>
+    egzaminas_ = other.egzaminas_;<br/>
+    galVid_ = other.galVid_;<br/>
+    galMed_ = other.galMed_;<br/>
+}`<br/>
 Panaudojimas: Sūkuriant naujus studentus kopijuojant iš esamų, dirbant su STL konteineriais.
 
 Kopijavimo Priskyrimo operatorius:
