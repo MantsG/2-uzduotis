@@ -17,6 +17,7 @@ using std::string;
 
 
 Studentas Stud_iv(bool atsitiktinis){
+    int laik_nd, sum=0;
 
     Studentas Pirmas;
     cout<<"Ivesk studento duomenis"<<endl;
@@ -30,8 +31,9 @@ Studentas Stud_iv(bool atsitiktinis){
         int nd_kiekis = rand()%10 + 1;
         std::vector<int> tmp;
         for(int i=0; i<nd_kiekis; i++){
-            int laik_nd = rand()%10 + 1;
+            laik_nd = rand()%10 + 1;
             tmp.push_back(laik_nd);
+            sum+=laik_nd;
         }
         Pirmas.setNd(tmp);
         Pirmas.setEgzaminas(rand()%10 + 1);
@@ -42,7 +44,7 @@ Studentas Stud_iv(bool atsitiktinis){
         string ndStr;
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n\);
 
-        cout<<"Iveskite studento ("<<Pirmas.vardas()<<" "<<Pirmas.pavarde()<<") namu darbu pazymius po viena (paspauskite 2 kartus ENTER, kad baigti): "<<endl;
+        cout<<"Iveskite studento ("<<Pirmas.vardas()<<" "<<Pirmas.pavarde()<<") namu darbu pazymius (paspauskite 2 kartus ENTER, kad baigti): "<<endl;
 
         int enter = 0;
 
@@ -73,11 +75,8 @@ Studentas Stud_iv(bool atsitiktinis){
             cout<<"Studento egzamino pazimys: ";
             cin>>egzStr;
             if(!egzStr.empty() && all_of(egzStr.begin(), egzStr.end(), ::isdigit)){
-                 int egz = stoi(egzStr);
-                if(egz >= 1 && egz <= 10){
-                    Pirmas.setEgzaminas(egz);
-                    break;
-                }
+                Pirmas.setEgzaminas(stoi(egzStr));
+                if(Pirmas.egzaminas() >= 1 && Pirmas.egzaminas() <= 10) break;
             }
             cout<<"Neteisinga ivestis, iveskite skaiciu nuo 1 iki 10"<<endl;
         }
