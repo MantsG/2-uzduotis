@@ -214,7 +214,8 @@ else if(strategijosPasirinkimas == 2){
             vargsiukai.splice(vargsiukai.end(), Grupe, toMove);
         }else ++it;
     }
-
+    kietiakai = Grupe;
+    
 #endif // NAUDOTI_VECTOR
     auto strat2_end = high_resolution_clock::now();
     auto trukmeStrat2 = duration_cast<milliseconds>(strat2_end - strat2_start).count();
@@ -340,6 +341,7 @@ else if(strategijosPasirinkimas == 3){
         cout<<"Failu isvedimas uztruko: "<<trukmeIsvedimas<<" ms\n";
 
 }
+
 
 
 
