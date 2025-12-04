@@ -19,8 +19,6 @@
 
 class Studentas : public Zmogus{
 private:
-    std::string vardas_;
-    std::string pavarde_;
     std::vector <int> nd_;
     int egzaminas_= 0;
     double galVid_ = 0.0;
@@ -30,31 +28,27 @@ private:
 public:
 
     Studentas()= default;
-    Studentas(const Studentas& other);
-    Studentas& operator=(const Studentas& other);
+    Studentas(std::istream& is){read(is);}
+    Studentas(const Studentas& other) = default;
+    Studentas& operator=(const Studentas& other) = default;
 
-    const std::string& vardas() const override {return vardas_;}
-    const std::string& pavarde() const override {return pavarde_;}
-    
-    std::istream& read(std::istream& is) override;
-    std::ostream& write(std::ostream& os) const override;
+    ~Studentas() = default;
 
-    inline double galVid() const {return galVid_;}
-    inline double galMed() const {return galMed_;}
-    inline int egzaminas() const {return egzaminas_;}
-    inline const std::vector<int>& nd() const {return nd_;}
+    const std::vector<int>& nd() const {return nd_;}
+    int egzaminas() const {return egzaminas_;}
+    double galVid() const {return galVid_;}
+    double galMed() const {return galMed_;}
 
-    inline void setVardas(const std::string& v) {vardas_ = v;}
-    inline void setPavarde(const std::string& p) {pavarde_ = p;}
-    inline void setEgzaminas(int e) {egzaminas_ = e;}
-    inline void setNd(const std::vector<int>& n) {nd_ = n;}
-    inline void addNd(int paz) {nd_.push_back(paz);}
+    void setEgzaminas(int e) {egzaminas_ = e;}
+    void setNd(const std::vector<int>& n) {nd_ = n;}
+    void addNd(int paz) {nd_.push_back(paz);}
 
-    void pridetiNd(int pazymys) { nd_.push_back(pazymys); }
+    void skaiciuotiGalutinis();
 
     double galBalas(double (*skaiciavimas)(std::vector<int>&) = median) const;
 
-    void skaiciuotiGalutinis();
+    std::ostream& write(std::ostream& os) const override;
+    std::istream& read(std::istream& is) override;
 
      friend std::ostream& operator<<(std::ostream& os, const Studentas& s){
         return s.write(os);
