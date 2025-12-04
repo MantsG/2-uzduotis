@@ -193,3 +193,31 @@ Išvesties operatorius: <br/>
 <img width="690" height="598" alt="image" src="https://github.com/user-attachments/assets/b5bfed17-dd22-4637-b9f1-e25d52cf3101" />
 <img width="448" height="500" alt="image" src="https://github.com/user-attachments/assets/27772ec5-8cef-484b-b52b-e6069ab790b6" />
 
+#v1.5 
+
+v1.5 commit 5ab9a79 - Sutvarkytas “Studentas.cpp” bug’as, „Studentas.cpp“ ištrintas destruktorius, nes jis lėtino programos veikimą.
+v1.5 commit f8e3c8f - Sukurtas „Zmogus.h“ abstrakti bazinė klasė.
+v1.5 commit 80507a7 - Papildytas “Studentas.h” failas.
+v1.5 commit 488c798 - Papildytas “Studentas.cpp” failas.
+v1.5 commit d58d007  - Papildytas “Utils.cpp” failas.
+v1.5 commit 802bcbd - Patvarkytas “Failai.cpp” ir pridėta žinutė, jei nepavyksta nuskaityti eilutės iš failo.
+v1.5 commit 0e69498 - Pakeistas “Ivedimas.cpp” failas.
+v1.5 commit 30297be - Sutvarkytas “Zmogus.h” failas.
+v1.5 commit e137a1d - Sutvarkytas “Zmogus.h” failas.
+v1.5 commit 83daf15 - Sutvarkytas “Zmogus.h” failas.
+v1.5 commit ff0ac58 - Sutvarkytas “Studentas.h” failas.
+v1.5 commits 798625b  - 0c2d1d2 - Sutvarkytas visas kodas ir ištrintas „Zmogus.h“ failas.
+
+<img width="448" height="540" alt="image" src="https://github.com/user-attachments/assets/effbd4d2-a2c9-485c-b01c-e49fb48baab5" />
+
+#Klasių struktūros palyginimas
+
+| Charakteristika               | Bazinė klasė `Zmogus`                | Išvestinė klasė `Studentas`          |
+|-------------------------------|--------------------------------------|--------------------------------------|
+| **Klasifikacija**             | Abstrakti klasė                      | Konkreti klasė                       |
+| **Objektų kūrimas**           | Negalima sukurti objektų             | Galima sukurti objektus              |
+| **Abstrakcija**               | Turi gryną virtualų metodą           | Neturi grynų virtualių metodų        |
+| **Atributai**                 | `vardas_`, `pavarde_`                | `vardas_`,`pavarde_`,`nd_`,`egzaminas_`,`galVid_`,`galMed_`       |
+| **Paveldėjimas**              | Pagrindinė klasė                     | Paveldi iš `Zmogus`                  |
+| **Virtualūs metodai**         | `spausdintiInfo()`, `skaitytiInfo()` | Perrašo virtualius metodus           |
+| **Paskirtis**                 | Apibrėžia bendrą žmogaus struktūrą   | Apibrėžia specifinę studento funkcionalumą            |
