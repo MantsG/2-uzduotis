@@ -42,7 +42,7 @@ Studentas Stud_iv(bool atsitiktinis){
     }
     else{
         string ndStr;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n\);
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         cout<<"Iveskite studento ("<<Pirmas.vardas()<<" "<<Pirmas.pavarde()<<") namu darbu pazymius (paspauskite 2 kartus ENTER, kad baigti): "<<endl;
 
