@@ -20,13 +20,12 @@ void GeneruotiFaila(const string& failoVardas, int kiek){
         return;
     }
 
-    out<<"Vardas Pavarde";
-    for(int i=1; i<=10; i++) out<<" ND"<<i;
-    out<<" Egz"<<endl;
+    out<<"# Vardas Pavarde NDCount ND1 ND2 ... Egz"<<endl;
 
     for(int i=1; i<=kiek; i++){
-        out<<"Vardas"<<i<<" Pavarde"<<i;
-        for(int j=0; j<10; j++){
+        int nd_kiekis = rand()%10 + 1;
+        out<<"Vardas"<<i<<" Pavarde"<<i<<" "<<nd_kiekis;
+        for(int j=0; j<nd_kiekis; j++){
             out<<" "<<(rand() % 10 + 1);
         }
         out<<" "<<(rand() % 10 + 1)<<endl;
@@ -38,15 +37,20 @@ Konteineris SkaitytiFaila(const string &failoVardas){
     Konteineris grupe;
     ifstream in(failoVardas);
     if(!in){
-        cout<<"Nepavyko atidaryti failo"<<endl;
+        cout<<"Nepavyko atidaryti failo "<<failoVardas<<endl;
         return grupe;
         }
     
-    string header;
-    std::getline(in, header);
-
-   Studentas s;
-   while(in>>s){ 
+   string line;
+    while(std::getline(in, line)){
+        if(line.empty()) continue;
+        if(line[0] == '#') continue;
+        std::istringstream iss(line);
+        Studentas s;
+        if(!(iss >> s)){
+            cout<<"Demesio: nepavyko nuskaityti eilutes: "<<line<<endl;
+            continue;
+        }
         grupe.push_back(s);
     }
     return grupe;
