@@ -235,4 +235,13 @@ TEST_CASE("Default constructor sukuria tuscia studenta", "[ctor][default]") {
     REQUIRE(s.galMed() == Approx(0.0));
 }
 ```
+```cpp
+TEST_CASE("Parametrized constructor nustato varda ir pavarde", "[ctor][param]") {
+    Studentas s("Vardenis", "Pavardenis");
 
+    REQUIRE(s.vardas() == "Vardenis");
+    REQUIRE(s.pavarde() == "Pavardenis");
+    REQUIRE(s.egzaminas() == 0);
+    REQUIRE(s.nd().empty());
+}
+```
