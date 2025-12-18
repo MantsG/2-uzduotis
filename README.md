@@ -221,3 +221,9 @@ v1.5 commits 798625b  - 0c2d1d2 - Sutvarkytas visas kodas ir ištrintas „Zmogu
 | **Paveldėjimas**              | Pagrindinė klasė                     | Paveldi iš `Zmogus`                  |
 | **Virtualūs metodai**         | `spausdintiInfo()`, `skaitytiInfo()` | Perrašo virtualius metodus           |
 | **Paskirtis**                 | Apibrėžia bendrą žmogaus struktūrą   | Apibrėžia specifinę studento funkcionalumą            |
+
+#v2.0
+
+
+
+
