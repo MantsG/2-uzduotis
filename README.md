@@ -223,7 +223,16 @@ v1.5 commits 798625b  - 0c2d1d2 - Sutvarkytas visas kodas ir ištrintas „Zmogu
 | **Paskirtis**                 | Apibrėžia bendrą žmogaus struktūrą   | Apibrėžia specifinę studento funkcionalumą            |
 
 #v2.0
+```cpp
+TEST_CASE("Default constructor sukuria tuscia studenta", "[ctor][default]") {
+    Studentas s;
 
-
-
+    REQUIRE(s.vardas() == "");
+    REQUIRE(s.pavarde() == "");
+    REQUIRE(s.egzaminas() == 0);
+    REQUIRE(s.nd().empty());
+    REQUIRE(s.galVid() == Approx(0.0));
+    REQUIRE(s.galMed() == Approx(0.0));
+}
+```
 
