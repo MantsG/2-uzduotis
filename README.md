@@ -245,3 +245,5 @@ TEST_CASE("Parametrized constructor nustato varda ir pavarde", "[ctor][param]") 
     REQUIRE(s.nd().empty());
 }
 ```
+<img width="710" height="590" alt="image" src="https://github.com/user-attachments/assets/de170084-9d00-498d-8771-e53ebe55fa0e" />
+
