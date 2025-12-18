@@ -1,33 +1,22 @@
-cmake_minimum_required(VERSION 3.10)
-project(1Uzduotis VERSION 1.0 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.14)
+project(studentu_rusiavimas LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(MSVC)
-	add_compile_options(/W4)
-else()
-	add_compile_options(-Wall -Wextra -pedantic)
-endif()
+include(FetchContent)
 
-set(SOURCES
-	main.cpp
-	Failai.cpp
-	Ivedimas.cpp
-	Utils.cpp
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG v3.11.0
 )
+FetchContent_MakeAvailable(Catch2)
 
-set(HEADERS
-	Studentas.h
-	Failai.h
-	Ivedimas.h
-	Utils.h
+# --- Core biblioteka iš tavo .cpp failų ---
+add_library(core
+  Studentas.cpp
+  Utils.cpp
+  Ivedimas.cpp
+  Failai.cpp
 )
-
-add_executable(1Uzduotis ${SOURCES} ${HEADERS})
-
-set(CMAKE_CXX_FLAGS_RELEASE "-03")
-
-# (Pasirinkimai) list arba vector
-# add_definitions(-DNAUDOTI_LIST)
-# add_definitions(-DNAUDOTI_VECTOR)
